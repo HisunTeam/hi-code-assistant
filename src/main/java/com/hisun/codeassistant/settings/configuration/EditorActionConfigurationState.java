@@ -11,10 +11,8 @@ import java.util.Map;
 
 import static com.hisun.codeassistant.enums.EditorActionEnum.*;
 
-@State(
-        name = "com.hisun.codeassistant.settings.configuration.EditorActionConfigurationState",
-        storages = @Storage("HiCodeAssistantActionConfiguration.xml")
-)
+@Deprecated
+@State(name = "com.hisun.codeassistant.settings.configuration.EditorActionConfigurationState", storages = @Storage("HiCodeAssistantActionConfiguration.xml"))
 public class EditorActionConfigurationState implements PersistentStateComponent<EditorActionConfigurationState> {
     private final Map<String, String> defaultActions = new LinkedHashMap<>(Map.of(
             PERFORMANCE_CHECK.getLabel(), PERFORMANCE_CHECK.getPrompt(),

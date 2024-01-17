@@ -1,0 +1,47 @@
+package com.hisun.codeassistant.toolwindows.chat.ui;
+
+import com.hisun.codeassistant.HiCodeAssistantIcons;
+import com.hisun.codeassistant.conversations.message.Message;
+import com.hisun.codeassistant.settings.state.SettingsState;
+import com.intellij.openapi.Disposable;
+import com.intellij.openapi.project.Project;
+import com.intellij.ui.ColorUtil;
+import com.intellij.ui.JBColor;
+import com.intellij.ui.components.JBLabel;
+import com.intellij.util.ui.JBFont;
+import com.intellij.util.ui.JBUI;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class UserMessagePanel extends JPanel {
+    public UserMessagePanel(Project project, Message message, Disposable parentDisposable) {
+        super(new BorderLayout());
+        var headerPanel = new JPanel(new BorderLayout());
+        headerPanel.setOpaque(false);
+        headerPanel.add(createDisplayNameLabel(), BorderLayout.LINE_START);
+        setBorder(JBUI.Borders.compound(
+                JBUI.Borders.customLine(JBColor.border(), 1, 0, 1, 0),
+                JBUI.Borders.empty(12, 8, 8, 8)));
+        setBackground(ColorUtil.brighter(getBackground(), 2));
+        add(headerPanel, BorderLayout.NORTH);
+        add(createResponseBody(project, message.getPrompt(), parentDisposable), BorderLayout.SOUTH);
+    }
+
+    private ChatMessageResponseBody createResponseBody(
+            Project project,
+            String prompt,
+            Disposable parentDisposable) {
+        return new ChatMessageResponseBody(project, false, true, parentDisposable).withResponse(prompt);
+    }
+
+    private JBLabel createDisplayNameLabel() {
+        return new JBLabel(
+                SettingsState.getInstance().getDisplayName(),
+                HiCodeAssistantIcons.USER_ICON,
+                SwingConstants.LEADING)
+                .setAllowAutoWrapping(true)
+                .withFont(JBFont.label().asBold())
+                .withBorder(JBUI.Borders.emptyBottom(6));
+    }
+}

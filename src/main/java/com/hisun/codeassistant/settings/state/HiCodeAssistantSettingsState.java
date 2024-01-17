@@ -13,13 +13,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Deprecated
 @Setter
 @Getter
 @State(name = "HiCodeAssistant_Settings", storages = @Storage("HiCodeAssistant_Settings.xml"))
 public class HiCodeAssistantSettingsState implements PersistentStateComponent<HiCodeAssistantSettingsState> {
     private String fullName;
 
-    private String selectedModel = ModelEnum.CHATGLM3_6B.getName();
+    private String selectedModel = ModelEnum.ChatGLM3_6B.getName();
 
     private Map<String, String> modelBaseHostMap = new ConcurrentHashMap<>();
 

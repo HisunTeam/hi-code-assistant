@@ -1,7 +1,7 @@
 package com.hisun.codeassistant.toolwindows.components;
 
 import com.hisun.codeassistant.toolwindows.components.code.IconJButton;
-import com.hisun.codeassistant.icons.HiCodeAssistantIcons;
+import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBTextArea;
 import com.intellij.util.ui.JBUI;

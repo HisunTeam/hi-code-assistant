@@ -1,7 +1,7 @@
 package com.hisun.codeassistant.llms;
 
 import com.hisun.codeassistant.enums.ModelEnum;
-import com.hisun.codeassistant.llms.openai.OpenAIServiceProvider;
+import com.hisun.codeassistant.llms.client.openai.OpenAIServiceProvider;
 import com.hisun.codeassistant.settings.state.HiCodeAssistantSettingsState;
 import com.intellij.openapi.components.Service;
 import com.intellij.openapi.project.Project;
@@ -14,7 +14,7 @@ public final class LlmProviderFactory {
         ModelEnum modelEnum = ModelEnum.fromName(selectedModel);
 
         switch (modelEnum) {
-            case CHATGLM3_6B:
+            case ChatGLM3_6B:
                 return project.getService(OpenAIServiceProvider.class);
         }
 

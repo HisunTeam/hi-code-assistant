@@ -2,7 +2,7 @@ package com.hisun.codeassistant.toolwindows.components.code;
 
 import com.hisun.codeassistant.enums.EditorActionEnum;
 import com.hisun.codeassistant.toolwindows.components.RoundedPanel;
-import com.hisun.codeassistant.icons.HiCodeAssistantIcons;
+import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.toolwindows.components.listener.CopyActionListener;
 import com.hisun.codeassistant.toolwindows.components.listener.InsertAtCaretActionListener;
 import com.hisun.codeassistant.toolwindows.components.listener.NewFileActionListener;

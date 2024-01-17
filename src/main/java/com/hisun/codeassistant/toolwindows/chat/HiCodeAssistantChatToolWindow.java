@@ -6,8 +6,8 @@ import com.hisun.codeassistant.enums.EditorActionEnum;
 import com.hisun.codeassistant.enums.SessionTypeEnum;
 import com.hisun.codeassistant.llms.LlmProvider;
 import com.hisun.codeassistant.llms.LlmProviderFactory;
-import com.hisun.codeassistant.llms.openai.api.ChatCompletionRequest;
-import com.hisun.codeassistant.llms.openai.api.ChatMessage;
+import com.hisun.codeassistant.llms.client.openai.api.ChatCompletionRequest;
+import com.hisun.codeassistant.llms.client.openai.api.ChatMessage;
 import com.hisun.codeassistant.settings.state.HiCodeAssistantSettingsState;
 import com.hisun.codeassistant.toolwindows.components.ChatDisplayPanel;
 import com.hisun.codeassistant.toolwindows.components.ContentComponent;
@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+@Deprecated
 public class HiCodeAssistantChatToolWindow {
 
     public static final String FETCH_ANSWER = "获取答案";

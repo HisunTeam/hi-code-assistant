@@ -1,7 +1,7 @@
 package com.hisun.codeassistant.actions.toolbar;
 
 import com.hisun.codeassistant.toolwindows.HiCodeAssistantChatToolWindowFactory;
-import com.hisun.codeassistant.icons.HiCodeAssistantIcons;
+import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;

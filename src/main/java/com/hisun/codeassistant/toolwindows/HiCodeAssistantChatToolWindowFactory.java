@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Map;
 
+@Deprecated
 public class HiCodeAssistantChatToolWindowFactory implements ToolWindowFactory {
     private static final Map<Project, HiCodeAssistantChatToolWindow> hiCodeAssistantChatToolWindowMap = Maps.newConcurrentMap();
 

@@ -2,35 +2,38 @@ package com.hisun.codeassistant.enums;
 
 import lombok.Getter;
 
+@Getter
 public enum ModelEnum {
-    CHATGLM3_6B("chatglm3-6b", "THUDM/chatglm3-6b", "chatglm3-6b");
+    ChatGLM3_6B("chatglm3-6b", "THUDM/chatglm3-6b", "ChatGLM3-6B(8k)", 8192),
+    GPT3_5("gpt-3.5", "gpt-3.5-turbo", "GPT-3.5(4k)", 4096);
     // model name
-    @Getter
     private final String name;
 
     // model code
-    @Getter
     private final String code;
 
     // model display name
     private final String displayName;
 
-    ModelEnum(String name, String code, String displayName) {
+    private final int maxTokens;
+
+    ModelEnum(String name, String code, String displayName, int maxTokens) {
         this.name = name;
         this.code = code;
         this.displayName = displayName;
+        this.maxTokens = maxTokens;
     }
 
     public static ModelEnum fromName(String name) {
         if (name == null) {
-            return CHATGLM3_6B;
+            return ChatGLM3_6B;
         }
         for (ModelEnum type : ModelEnum.values()) {
             if (type.getName().equals(name)) {
                 return type;
             }
         }
-        return CHATGLM3_6B;
+        return ChatGLM3_6B;
     }
 
     @Override

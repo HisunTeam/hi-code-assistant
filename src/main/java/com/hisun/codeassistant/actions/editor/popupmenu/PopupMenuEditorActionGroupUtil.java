@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+@Deprecated
 public class PopupMenuEditorActionGroupUtil {
     private static final Map<String, Icon> ICONS = new LinkedHashMap<>(Map.of(
             EditorActionEnum.PERFORMANCE_CHECK.getLabel(), AllIcons.Plugins.Updated,

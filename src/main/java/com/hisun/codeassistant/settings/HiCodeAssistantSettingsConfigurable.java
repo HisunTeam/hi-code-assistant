@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
+@Deprecated
 public class HiCodeAssistantSettingsConfigurable implements Configurable, Disposable {
 
     private HiCodeAssistantSettingsComponent settingsComponent;

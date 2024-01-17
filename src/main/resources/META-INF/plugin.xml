@@ -10,24 +10,29 @@
         <postStartupActivity implementation="com.hisun.codeassistant.HiCodeAssistantStartupActivity"/>
 
         <applicationConfigurable id="settings.hicodeassistant" parentId="tools" displayName="Hisun Code Assistant"
-                                 instance="com.hisun.codeassistant.settings.HiCodeAssistantSettingsConfigurable"/>
+                                 instance="com.hisun.codeassistant.settings.SettingsConfigurable"/>
 
-        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.HiCodeAssistantSettingsState"/>
-        <applicationService serviceImplementation="com.hisun.codeassistant.settings.configuration.EditorActionConfigurationState"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.SettingsState"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.OpenAISettingsState"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.SelfHostedLanguageModelSettingsState"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.IncludedFilesSettingsState"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.configuration.ConfigurationState"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.conversations.ConversationsState"/>
 
-        <toolWindow id="HiCodeAssistant" icon="com.hisun.codeassistant.icons.HiCodeAssistantIcons.SYSTEM_ICON" anchor="right" doNotActivateOnStart="true"
-                    factoryClass="com.hisun.codeassistant.toolwindows.HiCodeAssistantChatToolWindowFactory"/>
+        <toolWindow id="HiCodeAssistant" icon="com.hisun.codeassistant.HiCodeAssistantIcons.SYSTEM_ICON" anchor="right"
+                    factoryClass="com.hisun.codeassistant.toolwindows.ProjectToolWindowFactory"/>
+        <notificationGroup id="HiCodeAssistant Notification Group" displayType="BALLOON" key="notification.group.name"/>
 
-        <notificationGroup id="HiCodeAssistant Notification Group" displayType="BALLOON"/>
     </extensions>
 
+    <resource-bundle>messages.hi-code-assistant</resource-bundle>
+
     <actions>
-        <group id="HiCodeAssistantGroupedActions" icon="com.hisun.codeassistant.icons.HiCodeAssistantIcons.SYSTEM_ICON" popup="true" text="HiCodeAssistant" description="HiCodeAssistant">
-            <action id="com.hisun.codeassistant.actions.editor.popupmenu.BasicEditorAction"
-                    class="com.intellij.openapi.actionSystem.DefaultActionGroup"
-                    popup="true"
-                    text="HiCodeAssistant" description="Basic actions of HiCodeAssistant">
-            </action>
+        <group id="HiCodeAssistantEditorPopup"
+               text="HiCodeAssistant"
+               class="com.intellij.openapi.actionSystem.DefaultActionGroup"
+               popup="true"
+               icon="com.hisun.codeassistant.HiCodeAssistantIcons.SYSTEM_ICON">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </group>
     </actions>

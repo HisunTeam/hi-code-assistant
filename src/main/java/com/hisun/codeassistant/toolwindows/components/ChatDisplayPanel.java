@@ -1,6 +1,6 @@
 package com.hisun.codeassistant.toolwindows.components;
 
-import com.hisun.codeassistant.icons.HiCodeAssistantIcons;
+import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.settings.state.HiCodeAssistantSettingsState;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBLabel;
