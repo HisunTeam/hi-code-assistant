@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
     alias(libs.plugins.qodana) // Gradle Qodana Plugin
     alias(libs.plugins.kover) // Gradle Kover Plugin
+    alias(libs.plugins.lombok) // Gradle lombok Plugin
 }
 
 group = properties("pluginGroup").get()
@@ -71,6 +72,12 @@ koverReport {
 tasks {
     wrapper {
         gradleVersion = properties("gradleVersion").get()
+    }
+
+    withType<JavaCompile> {
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
+        options.encoding = "UTF-8"
     }
 
     patchPluginXml {
