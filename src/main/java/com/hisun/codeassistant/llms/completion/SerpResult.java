@@ -3,10 +3,12 @@ package com.hisun.codeassistant.llms.completion;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
 /**
  * Search Engine Results Pages Result
  */
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SerpResult {
     private final String url;
@@ -26,19 +28,4 @@ public class SerpResult {
         this.snippetSource = snippetSource;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSnippet() {
-        return snippet;
-    }
-
-    public String getSnippetSource() {
-        return snippetSource;
-    }
 }

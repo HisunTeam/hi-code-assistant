@@ -38,8 +38,7 @@ public final class StandardChatToolWindowContentManager {
     public void sendMessage(Message message, ConversationType conversationType) {
         getToolWindow().show();
 
-        if (ConfigurationState.getInstance().isCreateNewChatOnEachAction()
-                || ConversationsState.getCurrentConversation() == null) {
+        if (ConversationsState.getCurrentConversation() == null) {
             createNewTabPanel().sendMessage(message, conversationType);
             return;
         }

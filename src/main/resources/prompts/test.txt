@@ -1,0 +1,2 @@
+Please help to generate JUnit test cases for the following code, be aware that if the code is untestable, please state it and give suggestions instead.
+{{selectedCode}}

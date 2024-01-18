@@ -19,9 +19,6 @@ public class ConfigurationState implements PersistentStateComponent<Configuratio
     private String systemPrompt = COMPLETION_SYSTEM_PROMPT;
     private int maxTokens = 1000;
     private double temperature = 0.1;
-    private boolean checkForPluginUpdates = true;
-    private boolean createNewChatOnEachAction;
-    private boolean captureCompileErrors = true;
     private boolean autoFormattingEnabled = true;
     private Map<String, String> tableData = EditorActionsUtil.DEFAULT_ACTIONS;
 

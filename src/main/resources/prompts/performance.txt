@@ -1,0 +1,2 @@
+Find potential performance bottlenecks with the following code and suggest improvements which can be made to improve performance
+{{selectedCode}}

@@ -1,0 +1,2 @@
+Please explain the following code in detail, line by line. and summarize the following.
+{{selectedCode}}

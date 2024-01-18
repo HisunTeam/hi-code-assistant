@@ -31,6 +31,7 @@ import com.intellij.openapi.editor.impl.EditorImpl;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.JBColor;
 import com.intellij.util.ui.JBUI;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -45,6 +46,7 @@ import static java.util.stream.Collectors.toList;
 public abstract class ChatToolWindowTabPanel implements Disposable {
     private static final Logger LOG = Logger.getInstance(ChatToolWindowTabPanel.class);
     private final JPanel rootPanel;
+    @Getter
     private final Conversation conversation;
     private final UserPromptTextArea userPromptTextArea;
     private final ConversationService conversationService;
@@ -80,10 +82,6 @@ public abstract class ChatToolWindowTabPanel implements Disposable {
         return rootPanel;
     }
 
-    public Conversation getConversation() {
-        return conversation;
-    }
-
     public void sendMessage(Message message) {
         sendMessage(message, ConversationType.DEFAULT);
     }
@@ -96,7 +94,7 @@ public abstract class ChatToolWindowTabPanel implements Disposable {
                         .map(ReferencedFile::getFilePath)
                         .collect(toList());
                 message.setReferencedFilePaths(referencedFilePaths);
-                message.setUserMessage(message.getPrompt());
+//                message.setUserMessage(message.getPrompt());
                 message.setPrompt(getPromptWithContext(referencedFiles, message.getPrompt()));
 
                 totalTokensPanel.updateReferencedFilesTokens(referencedFiles);

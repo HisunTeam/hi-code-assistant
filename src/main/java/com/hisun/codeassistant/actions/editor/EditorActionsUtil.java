@@ -18,6 +18,7 @@ import org.apache.commons.text.CaseUtils;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import static java.lang.String.format;
@@ -25,22 +26,14 @@ import static java.util.stream.Collectors.toList;
 
 public class EditorActionsUtil {
     public static Map<String, String> DEFAULT_ACTIONS = new LinkedHashMap<>(Map.of(
-            "Find Bugs", "Find bugs and output code with bugs "
-                    + "fixed in the following code: {{selectedCode}}",
-            "Write Tests", "Write Tests for the selected code {{selectedCode}}",
-            "Explain", "Explain the selected code {{selectedCode}}",
-            "Refactor", "Refactor the selected code {{selectedCode}}",
-            "Optimize", "Optimize the selected code {{selectedCode}}"));
-
-    public static String[][] DEFAULT_ACTIONS_ARRAY = toArray(DEFAULT_ACTIONS);
-
-    public static String[][] toArray(Map<String, String> actionsMap) {
-        return actionsMap.entrySet()
-                .stream()
-                .map((entry) -> new String[]{entry.getKey(), entry.getValue()})
-                .collect(toList())
-                .toArray(new String[0][0]);
-    }
+            EditorActionEnum.REVIEW.getLabel(), EditorActionEnum.REVIEW.getPrompt(),
+            EditorActionEnum.REFACTOR.getLabel(), EditorActionEnum.REFACTOR.getPrompt(),
+            EditorActionEnum.PERFORMANCE.getLabel(), EditorActionEnum.PERFORMANCE.getPrompt(),
+            EditorActionEnum.SECURITY.getLabel(), EditorActionEnum.SECURITY.getPrompt(),
+            EditorActionEnum.OPTIMIZE.getLabel(), EditorActionEnum.OPTIMIZE.getPrompt(),
+            EditorActionEnum.COMMENT.getLabel(), EditorActionEnum.COMMENT.getPrompt(),
+            EditorActionEnum.EXPLAIN.getLabel(), EditorActionEnum.EXPLAIN.getPrompt(),
+            EditorActionEnum.GENERATE_TESTS.getLabel(), EditorActionEnum.GENERATE_TESTS.getPrompt()));
 
     public static void refreshActions() {
         AnAction actionGroup =
@@ -58,7 +51,7 @@ public class EditorActionsUtil {
                     protected void actionPerformed(Project project, Editor editor, String selectedText) {
                         var fileExtension = FileUtil.getFileExtension(((EditorImpl) editor).getVirtualFile().getName());
                         var message = new Message(prompt.replace("{{selectedCode}}", format("\n```%s\n%s\n```", fileExtension, selectedText)));
-                        message.setUserMessage(prompt.replace("{{selectedCode}}", ""));
+                        message.setUserMessage(Objects.requireNonNull(EditorActionEnum.getEnumByLabel(label)).getUserMessage());
                         var toolWindowContentManager = project.getService(StandardChatToolWindowContentManager.class);
                         toolWindowContentManager.getToolWindow().show();
                         message.setReferencedFilePaths(

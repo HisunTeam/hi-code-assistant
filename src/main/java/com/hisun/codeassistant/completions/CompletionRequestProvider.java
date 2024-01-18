@@ -27,10 +27,7 @@ import static java.util.stream.Collectors.toList;
 public class CompletionRequestProvider {
     private static final Logger LOG = Logger.getInstance(CompletionRequestProvider.class);
 
-    public static final String COMPLETION_SYSTEM_PROMPT = getResourceContent(
-            "/prompts/default-completion-system-prompt.txt");
-    public static final String FIX_COMPILE_ERRORS_SYSTEM_PROMPT = getResourceContent(
-            "/prompts/fix-compile-errors.txt");
+    public static final String COMPLETION_SYSTEM_PROMPT = getResourceContent("/prompts/default-completion-system-prompt.txt");
     private final EncodingManager encodingManager = EncodingManager.getInstance();
     private final Conversation conversation;
 
@@ -86,9 +83,6 @@ public class CompletionRequestProvider {
 
         if (callParameters.getConversationType() == ConversationType.DEFAULT) {
             messages.add(new ChatMessage(ChatMessageRole.SYSTEM.value(), ConfigurationState.getInstance().getSystemPrompt()));
-        }
-        if (callParameters.getConversationType() == ConversationType.FIX_COMPILE_ERRORS) {
-            messages.add(new ChatMessage(ChatMessageRole.SYSTEM.value(), FIX_COMPILE_ERRORS_SYSTEM_PROMPT));
         }
 
         for (var prevMessage : conversation.getMessages()) {

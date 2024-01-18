@@ -34,7 +34,7 @@ public class UserMessagePanel extends JPanel {
                     message.getUserMessage(),
                     parentDisposable), BorderLayout.SOUTH);
         } else {
-            add(createResponseBody(project, message.getPrompt(), parentDisposable), BorderLayout.SOUTH);
+            add(createResponseBody(project, message.getUserMessage(), parentDisposable), BorderLayout.SOUTH);
         }
     }
 
