@@ -6,7 +6,7 @@ import com.hisun.codeassistant.toolwindows.chat.StreamParser;
 import com.hisun.codeassistant.toolwindows.chat.editor.ResponseEditorPanel;
 import com.hisun.codeassistant.utils.EditorUtil;
 import com.hisun.codeassistant.utils.MarkdownUtil;
-import com.hisun.codeassistant.utils.UIUtil;
+import com.hisun.codeassistant.ui.UIUtil;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.options.ShowSettingsUtil;

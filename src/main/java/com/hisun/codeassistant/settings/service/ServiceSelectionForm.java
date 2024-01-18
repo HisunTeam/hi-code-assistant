@@ -2,11 +2,11 @@ package com.hisun.codeassistant.settings.service;
 
 import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.credentials.OpenAICredentialsManager;
-import com.hisun.codeassistant.enums.ModelEnum;
+import com.hisun.codeassistant.enums.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
 import com.hisun.codeassistant.settings.state.OpenAISettingsState;
 import com.hisun.codeassistant.settings.state.SelfHostedLanguageModelSettingsState;
-import com.hisun.codeassistant.utils.UIUtil;
+import com.hisun.codeassistant.ui.UIUtil;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.ui.EnumComboBoxModel;
 import com.intellij.ui.TitledSeparator;
@@ -32,7 +32,7 @@ public class ServiceSelectionForm {
     private final JBTextField selfHostedLanguageModelPathField;
     @Getter
     private final JPanel selfHostedLanguageModelServiceSectionPanel;
-    private final ComboBox<ModelEnum> selfHostedLanguageModelComboBox;
+    private final ComboBox<SelfModelEnum> selfHostedLanguageModelComboBox;
 
     public ServiceSelectionForm() {
         openAIApiKeyField = new JBPasswordField();
@@ -54,9 +54,9 @@ public class ServiceSelectionForm {
         selfHostedLanguageModelBaseHostField = new JBTextField(selfHostedLanguageModelSettings.getBaseHost(), 30);
         selfHostedLanguageModelPathField = new JBTextField(selfHostedLanguageModelSettings.getPath(), 30);
 
-        var selectedSelfHostedLanguageModel = ModelEnum.fromName(selfHostedLanguageModelSettings.getModel());
+        var selectedSelfHostedLanguageModel = SelfModelEnum.fromName(selfHostedLanguageModelSettings.getModel());
 
-        selfHostedLanguageModelComboBox = new ComboBox<>(new EnumComboBoxModel<>(ModelEnum.class));
+        selfHostedLanguageModelComboBox = new ComboBox<>(new EnumComboBoxModel<>(SelfModelEnum.class));
         selfHostedLanguageModelComboBox.setSelectedItem(selectedSelfHostedLanguageModel);
 
 
@@ -188,11 +188,11 @@ public class ServiceSelectionForm {
     }
 
     public void setSelfHostedLanguageModel(String model) {
-        selfHostedLanguageModelComboBox.setSelectedItem(ModelEnum.fromName(model));
+        selfHostedLanguageModelComboBox.setSelectedItem(SelfModelEnum.fromName(model));
     }
 
     public String getSelfHostedLanguageModel() {
-        return ((ModelEnum) (selfHostedLanguageModelComboBox.getModel()
+        return ((SelfModelEnum) (selfHostedLanguageModelComboBox.getModel()
                 .getSelectedItem()))
                 .getName();
     }

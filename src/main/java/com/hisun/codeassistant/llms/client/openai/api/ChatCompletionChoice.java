@@ -2,7 +2,6 @@ package com.hisun.codeassistant.llms.client.openai.api;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hisun.codeassistant.enums.ChatMessageRole;
 import lombok.Data;
 
 @Data

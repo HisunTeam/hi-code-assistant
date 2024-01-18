@@ -1,4 +1,4 @@
-package com.hisun.codeassistant.enums;
+package com.hisun.codeassistant.llms.client.openai.api;
 
 public enum ChatMessageRole {
     SYSTEM("system"),

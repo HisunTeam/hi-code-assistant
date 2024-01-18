@@ -3,13 +3,12 @@ package com.hisun.codeassistant.completions;
 import com.hisun.codeassistant.EncodingManager;
 import com.hisun.codeassistant.conversations.Conversation;
 import com.hisun.codeassistant.conversations.ConversationsState;
-import com.hisun.codeassistant.enums.ChatMessageRole;
-import com.hisun.codeassistant.enums.ModelEnum;
+import com.hisun.codeassistant.llms.client.openai.api.ChatMessageRole;
+import com.hisun.codeassistant.enums.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.api.ChatCompletionRequest;
 import com.hisun.codeassistant.llms.client.openai.api.ChatMessage;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
 import com.hisun.codeassistant.settings.configuration.ConfigurationState;
-import com.hisun.codeassistant.settings.state.OpenAISettingsState;
 import com.intellij.openapi.diagnostic.Logger;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,7 +49,7 @@ public class CompletionRequestProvider {
     public ChatCompletionRequest buildSelfChatCompletionRequest(
             @Nullable String model,
             CallParameters callParameters) {
-        String modelCode = ModelEnum.fromName(model).getCode();
+        String modelCode = SelfModelEnum.fromName(model).getCode();
         return ChatCompletionRequest.builder()
                 .messages(buildSelfMessages(modelCode, callParameters))
                 .model(modelCode)
@@ -115,7 +114,7 @@ public class CompletionRequestProvider {
 
         int modelMaxTokens;
         try {
-            modelMaxTokens = ModelEnum.fromName(model).getMaxTokens();
+            modelMaxTokens = SelfModelEnum.fromName(model).getMaxTokens();
 
             if (totalUsage <= modelMaxTokens) {
                 return messages;

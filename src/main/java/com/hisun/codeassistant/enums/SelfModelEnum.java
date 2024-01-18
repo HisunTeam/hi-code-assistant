@@ -3,7 +3,7 @@ package com.hisun.codeassistant.enums;
 import lombok.Getter;
 
 @Getter
-public enum ModelEnum {
+public enum SelfModelEnum {
     ChatGLM3_6B("chatglm3-6b", "THUDM/chatglm3-6b", "ChatGLM3-6B(8k)", 8192),
     GPT3_5("gpt-3.5", "gpt-3.5-turbo", "GPT-3.5(4k)", 4096);
     // model name
@@ -17,18 +17,18 @@ public enum ModelEnum {
 
     private final int maxTokens;
 
-    ModelEnum(String name, String code, String displayName, int maxTokens) {
+    SelfModelEnum(String name, String code, String displayName, int maxTokens) {
         this.name = name;
         this.code = code;
         this.displayName = displayName;
         this.maxTokens = maxTokens;
     }
 
-    public static ModelEnum fromName(String name) {
+    public static SelfModelEnum fromName(String name) {
         if (name == null) {
             return ChatGLM3_6B;
         }
-        for (ModelEnum type : ModelEnum.values()) {
+        for (SelfModelEnum type : SelfModelEnum.values()) {
             if (type.getName().equals(name)) {
                 return type;
             }

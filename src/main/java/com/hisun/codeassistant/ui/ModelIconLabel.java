@@ -1,7 +1,7 @@
 package com.hisun.codeassistant.ui;
 
 import com.hisun.codeassistant.HiCodeAssistantIcons;
-import com.hisun.codeassistant.enums.ModelEnum;
+import com.hisun.codeassistant.enums.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.util.ui.JBFont;
@@ -35,7 +35,7 @@ public class ModelIconLabel extends JBLabel {
 
     private String formatSelfModelName(String modelCode) {
         try {
-            return ModelEnum.fromName(modelCode).getDisplayName();
+            return SelfModelEnum.fromName(modelCode).getDisplayName();
         } catch (NoSuchElementException e) {
             return modelCode;
         }

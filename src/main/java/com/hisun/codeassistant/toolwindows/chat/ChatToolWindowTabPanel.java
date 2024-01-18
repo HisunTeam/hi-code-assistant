@@ -34,7 +34,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.UUID;
 
-import static com.hisun.codeassistant.utils.UIUtil.createScrollPaneWithSmartScroller;
+import static com.hisun.codeassistant.ui.UIUtil.createScrollPaneWithSmartScroller;
 import static java.lang.String.format;
 
 public abstract class ChatToolWindowTabPanel implements Disposable {

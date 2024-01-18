@@ -3,7 +3,7 @@ package com.hisun.codeassistant.toolwindows.chat.ui.textarea;
 import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.completions.CompletionRequestHandler;
-import com.hisun.codeassistant.utils.UIUtil;
+import com.hisun.codeassistant.ui.UIUtil;
 import com.intellij.icons.AllIcons;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.ex.util.EditorUtil;

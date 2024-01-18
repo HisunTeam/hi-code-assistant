@@ -1,10 +1,8 @@
 package com.hisun.codeassistant.llms.client.openai;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hisun.codeassistant.enums.ChatMessageRole;
-import com.hisun.codeassistant.llms.LlmProvider;
+import com.hisun.codeassistant.llms.client.openai.api.ChatMessageRole;
 import com.hisun.codeassistant.llms.client.openai.api.*;
-import com.hisun.codeassistant.settings.state.HiCodeAssistantSettingsState;
 import com.intellij.openapi.components.Service;
 import org.apache.commons.lang3.StringUtils;
 

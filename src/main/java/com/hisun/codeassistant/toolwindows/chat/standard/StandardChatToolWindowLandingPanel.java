@@ -2,7 +2,7 @@ package com.hisun.codeassistant.toolwindows.chat.standard;
 
 import com.hisun.codeassistant.settings.state.SettingsState;
 import com.hisun.codeassistant.toolwindows.chat.ui.ResponsePanel;
-import com.hisun.codeassistant.utils.UIUtil;
+import com.hisun.codeassistant.ui.UIUtil;
 import com.intellij.ui.components.ActionLink;
 import com.intellij.util.ui.JBUI;
 

@@ -1,4 +1,4 @@
-package com.hisun.codeassistant.utils;
+package com.hisun.codeassistant.ui;
 
 import com.hisun.codeassistant.toolwindows.chat.ui.SmartScroller;
 import com.intellij.ide.BrowserUtil;

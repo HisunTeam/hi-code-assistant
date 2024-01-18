@@ -3,7 +3,7 @@ package com.hisun.codeassistant.toolwindows.chat.standard;
 import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.conversations.ConversationService;
 import com.hisun.codeassistant.conversations.ConversationsState;
-import com.hisun.codeassistant.enums.ModelEnum;
+import com.hisun.codeassistant.enums.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
 import com.hisun.codeassistant.settings.service.ServiceType;
 import com.hisun.codeassistant.settings.state.OpenAISettingsState;
@@ -58,7 +58,7 @@ public class ModelComboBoxAction extends ComboBoxAction {
                 .forEach(
                         model -> actionGroup.add(createOpenAIModelAction(model, presentation)));
         actionGroup.addSeparator("HiCodeAssistant");
-        List.of(ModelEnum.values()).forEach(modelEnum -> actionGroup.add(createSelfHostedLanguageModelAction(modelEnum, presentation)));
+        List.of(SelfModelEnum.values()).forEach(modelEnum -> actionGroup.add(createSelfHostedLanguageModelAction(modelEnum, presentation)));
         return actionGroup;
     }
 
@@ -76,7 +76,7 @@ public class ModelComboBoxAction extends ComboBoxAction {
                 break;
             case SELF_HOSTED:
                 templatePresentation.setIcon(HiCodeAssistantIcons.SYSTEM_ICON);
-                templatePresentation.setText(ModelEnum.fromName(selfHostedLanguageModelSettings.getModel()).getDisplayName());
+                templatePresentation.setText(SelfModelEnum.fromName(selfHostedLanguageModelSettings.getModel()).getDisplayName());
                 break;
             default:
         }
@@ -143,7 +143,7 @@ public class ModelComboBoxAction extends ComboBoxAction {
     }
 
     private AnAction createSelfHostedLanguageModelAction(
-            ModelEnum model,
+            SelfModelEnum model,
             Presentation comboBoxPresentation) {
         createModelAction(ServiceType.SELF_HOSTED, model.getDisplayName(), HiCodeAssistantIcons.SYSTEM_ICON,
                 comboBoxPresentation);

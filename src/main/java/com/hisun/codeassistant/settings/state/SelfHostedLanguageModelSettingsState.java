@@ -1,6 +1,6 @@
 package com.hisun.codeassistant.settings.state;
 
-import com.hisun.codeassistant.enums.ModelEnum;
+import com.hisun.codeassistant.enums.SelfModelEnum;
 import com.hisun.codeassistant.settings.service.ServiceSelectionForm;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
@@ -20,7 +20,7 @@ public class SelfHostedLanguageModelSettingsState implements PersistentStateComp
     private static final String BASE_PATH = "/v1/chat/completions";
     private String baseHost = "";
     private String path = BASE_PATH;
-    private String model = ModelEnum.ChatGLM3_6B.getName();
+    private String model = SelfModelEnum.ChatGLM3_6B.getName();
 
     public static SelfHostedLanguageModelSettingsState getInstance() {
         return ApplicationManager.getApplication().getService(SelfHostedLanguageModelSettingsState.class);
