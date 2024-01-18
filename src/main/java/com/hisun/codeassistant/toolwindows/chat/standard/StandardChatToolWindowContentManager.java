@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.toolwindows.chat.standard;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.completions.ConversationType;
 import com.hisun.codeassistant.conversations.Conversation;
@@ -92,6 +93,13 @@ public final class StandardChatToolWindowContentManager {
         return Optional.empty();
     }
 
+    public Optional<StandardChatToolWindowPanel> tryFindChatToolWindowPanel() {
+        return tryFindFirstChatTabContent()
+                .map(ComponentContainer::getComponent)
+                .filter(component -> component instanceof StandardChatToolWindowPanel)
+                .map(component -> (StandardChatToolWindowPanel) component);
+    }
+
     public void resetAll() {
         tryFindChatTabbedPane().ifPresent(tabbedPane -> {
             tabbedPane.clearAll();
@@ -118,7 +126,7 @@ public final class StandardChatToolWindowContentManager {
 
     private Optional<Content> tryFindFirstChatTabContent() {
         return Arrays.stream(getToolWindow().getContentManager().getContents())
-                .filter(content -> "Chat".equals(content.getTabName()))
+                .filter(content -> HiCodeAssistantBundle.get("toolwindow.chat.panel").equals(content.getTabName()))
                 .findFirst();
     }
 }

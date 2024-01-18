@@ -1,6 +1,7 @@
 package com.hisun.codeassistant.toolwindows.chat;
 
 import com.hisun.codeassistant.EncodingManager;
+import com.hisun.codeassistant.HiCodeAssistantKeys;
 import com.hisun.codeassistant.completions.CallParameters;
 import com.hisun.codeassistant.completions.CompletionRequestHandler;
 import com.hisun.codeassistant.completions.CompletionRequestService;
@@ -21,6 +22,8 @@ import com.hisun.codeassistant.toolwindows.chat.ui.textarea.UserPromptTextArea;
 import com.hisun.codeassistant.toolwindows.chat.ui.textarea.UserPromptTextAreaHeader;
 import com.hisun.codeassistant.utils.EditorUtil;
 import com.hisun.codeassistant.utils.file.FileUtil;
+import com.hisun.codeassistant.embedding.ReferencedFile;
+import com.hisun.codeassistant.toolwindows.chat.standard.StandardChatToolWindowPanel;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
@@ -34,8 +37,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.UUID;
 
+import static com.hisun.codeassistant.completions.CompletionRequestProvider.getPromptWithContext;
 import static com.hisun.codeassistant.ui.UIUtil.createScrollPaneWithSmartScroller;
 import static java.lang.String.format;
+import static java.util.stream.Collectors.toList;
 
 public abstract class ChatToolWindowTabPanel implements Disposable {
     private static final Logger LOG = Logger.getInstance(ChatToolWindowTabPanel.class);
@@ -85,6 +90,22 @@ public abstract class ChatToolWindowTabPanel implements Disposable {
 
     public void sendMessage(Message message, ConversationType conversationType) {
         Runnable runnable = () -> {
+            var referencedFiles = project.getUserData(HiCodeAssistantKeys.SELECTED_FILES);
+            if (referencedFiles != null && !referencedFiles.isEmpty()) {
+                var referencedFilePaths = referencedFiles.stream()
+                        .map(ReferencedFile::getFilePath)
+                        .collect(toList());
+                message.setReferencedFilePaths(referencedFilePaths);
+                message.setUserMessage(message.getPrompt());
+                message.setPrompt(getPromptWithContext(referencedFiles, message.getPrompt()));
+
+                totalTokensPanel.updateReferencedFilesTokens(referencedFiles);
+
+                project.getService(StandardChatToolWindowContentManager.class)
+                        .tryFindChatToolWindowPanel()
+                        .ifPresent(StandardChatToolWindowPanel::clearSelectedFilesNotification);
+            }
+
             var messagePanel = toolWindowScrollablePanel.addMessage(message.getId());
             messagePanel.add(new UserMessagePanel(project, message, this));
             var responsePanel = createResponsePanel(message, conversationType);

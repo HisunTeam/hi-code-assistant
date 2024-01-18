@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.toolwindows;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.toolwindows.chat.standard.StandardChatToolWindowPanel;
 import com.hisun.codeassistant.toolwindows.conversations.ConversationsToolWindow;
 import com.intellij.openapi.project.DumbAware;
@@ -17,12 +18,12 @@ public class ProjectToolWindowFactory implements ToolWindowFactory, DumbAware {
         var chatToolWindowPanel = new StandardChatToolWindowPanel(project, toolWindow.getDisposable());
         var conversationsToolWindow = new ConversationsToolWindow(project);
 
-        addContent(toolWindow, chatToolWindowPanel, "Chat");
-        addContent(toolWindow, conversationsToolWindow.getContent(), "Chat History");
+        addContent(toolWindow, chatToolWindowPanel, HiCodeAssistantBundle.get("toolwindow.chat.panel"));
+        addContent(toolWindow, conversationsToolWindow.getContent(), HiCodeAssistantBundle.get("toolwindow.chat.history.panel"));
         toolWindow.addContentManagerListener(new ContentManagerListener() {
             public void selectionChanged(@NotNull ContentManagerEvent event) {
                 var content = event.getContent();
-                if ("Chat History".equals(content.getTabName()) && content.isSelected()) {
+                if (HiCodeAssistantBundle.get("toolwindow.chat.history.panel").equals(content.getTabName()) && content.isSelected()) {
                     conversationsToolWindow.refresh();
                 }
             }

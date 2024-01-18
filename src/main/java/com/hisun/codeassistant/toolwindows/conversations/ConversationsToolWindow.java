@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.toolwindows.conversations;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.actions.toolwindow.DeleteAllConversationsAction;
 import com.hisun.codeassistant.conversations.ConversationService;
 import com.intellij.openapi.actionSystem.ActionManager;
@@ -53,7 +54,7 @@ public class ConversationsToolWindow extends JPanel {
 
         var sortedConversations = conversationService.getSortedConversations();
         if (sortedConversations.isEmpty()) {
-            var emptyLabel = new JLabel("No conversations exist.");
+            var emptyLabel = new JLabel(HiCodeAssistantBundle.get("toolwindow.chat.panel.none"));
             emptyLabel.setFont(JBFont.h2());
             emptyLabel.setBorder(JBUI.Borders.empty(8));
             scrollablePanel.add(emptyLabel);

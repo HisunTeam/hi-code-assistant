@@ -3,12 +3,14 @@ package com.hisun.codeassistant.completions;
 import com.hisun.codeassistant.EncodingManager;
 import com.hisun.codeassistant.conversations.Conversation;
 import com.hisun.codeassistant.conversations.ConversationsState;
+import com.hisun.codeassistant.embedding.ReferencedFile;
 import com.hisun.codeassistant.llms.client.openai.api.ChatMessageRole;
 import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.api.ChatCompletionRequest;
 import com.hisun.codeassistant.llms.client.openai.api.ChatMessage;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
 import com.hisun.codeassistant.settings.configuration.ConfigurationState;
+import com.hisun.codeassistant.settings.state.IncludedFilesSettingsState;
 import com.intellij.openapi.diagnostic.Logger;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,6 +20,8 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import static com.hisun.codeassistant.utils.file.FileUtil.getResourceContent;
+import static java.lang.String.format;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 public class CompletionRequestProvider {
@@ -32,6 +36,23 @@ public class CompletionRequestProvider {
 
     public CompletionRequestProvider(Conversation conversation) {
         this.conversation = conversation;
+    }
+
+    public static String getPromptWithContext(List<ReferencedFile> referencedFiles,
+                                              String userPrompt) {
+        var includedFilesSettings = IncludedFilesSettingsState.getInstance();
+        var repeatableContext = referencedFiles.stream()
+                .map(item -> includedFilesSettings.getRepeatableContext()
+                        .replace("{FILE_PATH}", item.getFilePath())
+                        .replace("{FILE_CONTENT}", format(
+                                "```%s\n%s\n```",
+                                item.getFileExtension(),
+                                item.getFileContent().trim())))
+                .collect(joining("\n\n"));
+
+        return includedFilesSettings.getPromptTemplate()
+                .replace("{REPEATABLE_CONTEXT}", repeatableContext)
+                .replace("{QUESTION}", userPrompt);
     }
 
     public ChatCompletionRequest buildOpenAIChatCompletionRequest(

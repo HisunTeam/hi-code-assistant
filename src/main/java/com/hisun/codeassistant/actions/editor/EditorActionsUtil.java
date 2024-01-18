@@ -1,6 +1,8 @@
 package com.hisun.codeassistant.actions.editor;
 
+import com.hisun.codeassistant.HiCodeAssistantKeys;
 import com.hisun.codeassistant.conversations.message.Message;
+import com.hisun.codeassistant.embedding.ReferencedFile;
 import com.hisun.codeassistant.settings.configuration.ConfigurationState;
 import com.hisun.codeassistant.toolwindows.chat.standard.StandardChatToolWindowContentManager;
 import com.hisun.codeassistant.utils.file.FileUtil;
@@ -13,8 +15,10 @@ import com.intellij.openapi.extensions.PluginId;
 import com.intellij.openapi.project.Project;
 import org.apache.commons.text.CaseUtils;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
@@ -49,8 +53,6 @@ public class EditorActionsUtil {
 
             var configuredActions = ConfigurationState.getInstance().getTableData();
             configuredActions.forEach((label, prompt) -> {
-                // using label as action description to prevent com.intellij.diagnostic.PluginException
-                // https://github.com/carlrobertoh/CodeGPT/issues/95
                 var action = new BaseEditorAction(label, label) {
                     @Override
                     protected void actionPerformed(Project project, Editor editor, String selectedText) {
@@ -59,6 +61,11 @@ public class EditorActionsUtil {
                         message.setUserMessage(prompt.replace("{{selectedCode}}", ""));
                         var toolWindowContentManager = project.getService(StandardChatToolWindowContentManager.class);
                         toolWindowContentManager.getToolWindow().show();
+                        message.setReferencedFilePaths(
+                                Stream.ofNullable(project.getUserData(HiCodeAssistantKeys.SELECTED_FILES))
+                                        .flatMap(Collection::stream)
+                                        .map(ReferencedFile::getFilePath)
+                                        .collect(toList()));
                         toolWindowContentManager.sendMessage(message);
                     }
                 };

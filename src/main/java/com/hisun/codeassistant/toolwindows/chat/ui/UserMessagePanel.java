@@ -25,7 +25,17 @@ public class UserMessagePanel extends JPanel {
                 JBUI.Borders.empty(12, 8, 8, 8)));
         setBackground(ColorUtil.brighter(getBackground(), 2));
         add(headerPanel, BorderLayout.NORTH);
-        add(createResponseBody(project, message.getPrompt(), parentDisposable), BorderLayout.SOUTH);
+
+        var referencedFilePaths = message.getReferencedFilePaths();
+        if (referencedFilePaths != null && !referencedFilePaths.isEmpty()) {
+            add(new SelectedFilesAccordion(project, referencedFilePaths), BorderLayout.CENTER);
+            add(createResponseBody(
+                    project,
+                    message.getUserMessage(),
+                    parentDisposable), BorderLayout.SOUTH);
+        } else {
+            add(createResponseBody(project, message.getPrompt(), parentDisposable), BorderLayout.SOUTH);
+        }
     }
 
     private ChatMessageResponseBody createResponseBody(

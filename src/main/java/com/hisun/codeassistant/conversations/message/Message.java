@@ -21,6 +21,9 @@ public class Message {
     private String userMessage;
     @Setter
     private List<SerpResult> serpResults;
+    @Setter
+    private List<String> referencedFilePaths;
+
 
     public Message(String prompt, String response) {
         this(prompt);

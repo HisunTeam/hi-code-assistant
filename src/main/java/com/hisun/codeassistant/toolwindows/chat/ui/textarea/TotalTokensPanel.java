@@ -2,6 +2,7 @@ package com.hisun.codeassistant.toolwindows.chat.ui.textarea;
 
 import com.hisun.codeassistant.EncodingManager;
 import com.hisun.codeassistant.conversations.Conversation;
+import com.hisun.codeassistant.embedding.ReferencedFile;
 import com.intellij.icons.AllIcons;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.editor.EditorFactory;
@@ -19,6 +20,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -100,6 +102,13 @@ public class TotalTokensPanel extends JPanel {
         update();
     }
 
+    public void updateReferencedFilesTokens(List<ReferencedFile> includedFiles) {
+        totalTokensDetails.setReferencedFilesTokens(includedFiles.stream()
+                .mapToInt(file -> encodingManager.countTokens(file.getFileContent()))
+                .sum());
+        update();
+    }
+
     private TotalTokensDetails createTokenDetails(
             Conversation conversation,
             @Nullable String highlightedText) {
@@ -120,7 +129,8 @@ public class TotalTokensPanel extends JPanel {
                         "System Prompt", totalTokensDetails.getSystemPromptTokens(),
                         "Conversation Tokens", totalTokensDetails.getConversationTokens(),
                         "Input Tokens", totalTokensDetails.getUserPromptTokens(),
-                        "Highlighted Tokens", totalTokensDetails.getHighlightedTokens()))
+                        "Highlighted Tokens", totalTokensDetails.getHighlightedTokens(),
+                        "Referenced Files Tokens", totalTokensDetails.getReferencedFilesTokens()))
                         .entrySet().stream()
                         .map(entry -> format(
                                 "<p style=\"margin: 0;\"><small>%s: <strong>%d</strong></small></p>",

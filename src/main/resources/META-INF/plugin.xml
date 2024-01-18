@@ -15,6 +15,7 @@
         <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.SettingsState"/>
         <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.OpenAISettingsState"/>
         <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.SelfHostedLanguageModelSettingsState"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.IncludedFilesSettingsState"/>
         <applicationService serviceImplementation="com.hisun.codeassistant.settings.configuration.ConfigurationState"/>
         <applicationService serviceImplementation="com.hisun.codeassistant.conversations.ConversationsState"/>
 
