@@ -25,7 +25,7 @@ public class SettingsComponent {
     private final ServiceSelectionForm serviceSelectionForm;
 
     public SettingsComponent(Disposable parentDisposable, SettingsState settings) {
-        displayNameField = new JBTextField(settings.getDisplayName(), 22);
+        displayNameField = new JBTextField(settings.getDisplayName(), 20);
 
         serviceSelectionForm = new ServiceSelectionForm();
         var cardLayout = new CardLayout();

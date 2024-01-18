@@ -4,7 +4,7 @@ import com.hisun.codeassistant.HiCodeAssistantBundle;
 
 public enum ServiceType {
     OPENAI("OPENAI", HiCodeAssistantBundle.get("service.openai.title"), "chat.completion"),
-    SELF_HOSTED("SELF-HOSTED_LANGUAGE_MODEL", HiCodeAssistantBundle.get("service.self.title"), "self.chat.completion");
+    SELF_HOSTED("SELF-HOSTED", HiCodeAssistantBundle.get("service.self.title"), "self.chat.completion");
 
     private final String code;
     private final String label;
