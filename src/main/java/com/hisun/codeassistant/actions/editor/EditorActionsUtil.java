@@ -40,7 +40,7 @@ public class EditorActionsUtil {
 
     public static void refreshActions() {
         AnAction actionGroup =
-                ActionManager.getInstance().getAction("action.editor.group.EditorActionGroup");
+                ActionManager.getInstance().getAction("HiCodeAssistantEditorPopup");
         if (actionGroup instanceof DefaultActionGroup) {
             DefaultActionGroup group = (DefaultActionGroup) actionGroup;
             group.removeAll();

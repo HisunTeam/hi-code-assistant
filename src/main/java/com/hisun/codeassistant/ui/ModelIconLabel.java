@@ -1,7 +1,7 @@
 package com.hisun.codeassistant.ui;
 
 import com.hisun.codeassistant.HiCodeAssistantIcons;
-import com.hisun.codeassistant.enums.SelfModelEnum;
+import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.util.ui.JBFont;

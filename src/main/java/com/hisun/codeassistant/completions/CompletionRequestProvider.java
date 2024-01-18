@@ -4,7 +4,7 @@ import com.hisun.codeassistant.EncodingManager;
 import com.hisun.codeassistant.conversations.Conversation;
 import com.hisun.codeassistant.conversations.ConversationsState;
 import com.hisun.codeassistant.llms.client.openai.api.ChatMessageRole;
-import com.hisun.codeassistant.enums.SelfModelEnum;
+import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.api.ChatCompletionRequest;
 import com.hisun.codeassistant.llms.client.openai.api.ChatMessage;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;

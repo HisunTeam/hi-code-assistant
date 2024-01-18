@@ -2,7 +2,7 @@ package com.hisun.codeassistant.settings.service;
 
 import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.credentials.OpenAICredentialsManager;
-import com.hisun.codeassistant.enums.SelfModelEnum;
+import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
 import com.hisun.codeassistant.settings.state.OpenAISettingsState;
 import com.hisun.codeassistant.settings.state.SelfHostedLanguageModelSettingsState;
@@ -122,8 +122,6 @@ public class ServiceSelectionForm {
                 .createPanel();
 
         return FormBuilder.createFormBuilder()
-                .addComponent(new TitledSeparator(
-                        HiCodeAssistantBundle.get("settingsConfigurable.shared.authentication.title")))
                 .addComponent(new TitledSeparator(
                         HiCodeAssistantBundle.get("settingsConfigurable.shared.requestConfiguration.title")))
                 .addComponent(withEmptyLeftBorder(requestConfigurationPanel))

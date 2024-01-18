@@ -1,6 +1,6 @@
 package com.hisun.codeassistant.settings.state;
 
-import com.hisun.codeassistant.enums.SelfModelEnum;
+import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
 import com.hisun.codeassistant.settings.service.ServiceSelectionForm;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;

@@ -3,7 +3,7 @@ package com.hisun.codeassistant.toolwindows.chat.standard;
 import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.conversations.ConversationService;
 import com.hisun.codeassistant.conversations.ConversationsState;
-import com.hisun.codeassistant.enums.SelfModelEnum;
+import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
 import com.hisun.codeassistant.settings.service.ServiceType;
 import com.hisun.codeassistant.settings.state.OpenAISettingsState;
