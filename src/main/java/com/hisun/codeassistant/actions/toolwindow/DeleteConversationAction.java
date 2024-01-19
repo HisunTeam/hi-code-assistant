@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.actions.toolwindow;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.actions.editor.EditorActionsUtil;
 import com.hisun.codeassistant.conversations.ConversationsState;
 import com.hisun.codeassistant.ui.OverlayUtil;
@@ -13,7 +14,7 @@ public class DeleteConversationAction extends AnAction {
     private final Runnable onDelete;
 
     public DeleteConversationAction(Runnable onDelete) {
-        super("Delete Conversation", "Delete single conversation", AllIcons.Actions.GC);
+        super(HiCodeAssistantBundle.get("action.conversation.delete"), HiCodeAssistantBundle.get("action.conversation.delete.desc"), AllIcons.Actions.GC);
         this.onDelete = onDelete;
         EditorActionsUtil.registerOrReplaceAction(this);
     }

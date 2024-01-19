@@ -1,5 +1,7 @@
 package com.hisun.codeassistant.toolwindows.chat.standard;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
+import com.hisun.codeassistant.actions.editor.EditorActionEnum;
 import com.hisun.codeassistant.settings.state.SettingsState;
 import com.hisun.codeassistant.toolwindows.chat.ui.ResponsePanel;
 import com.hisun.codeassistant.ui.UIUtil;
@@ -16,7 +18,7 @@ public class StandardChatToolWindowLandingPanel extends ResponsePanel {
         addContent(createContent(onAction));
     }
 
-    private ActionLink createEditorActionLink(EditorAction action, EditorActionEvent onAction) {
+    private ActionLink createEditorActionLink(EditorActionEnum action, EditorActionEvent onAction) {
         return new ActionLink(action.getUserMessage(), event -> {
             onAction.handleAction(action, ((ActionLink) event.getSource()).getLocationOnScreen());
         });
@@ -26,24 +28,14 @@ public class StandardChatToolWindowLandingPanel extends ResponsePanel {
         var panel = new JPanel(new BorderLayout());
         panel.add(UIUtil.createTextPane(
                 "<html>"
-                        + format(
-                        "<p style=\"margin-top: 4px; margin-bottom: 4px;\">"
-                                + "Welcome <strong>%s</strong>, I'm your intelligent code companion, here to be"
-                                + " your partner-in-crime for getting things done in a flash."
-                                + "</p>", SettingsState.getInstance().getDisplayName())
-                        + "<p style=\"margin-top: 4px; margin-bottom: 4px;\">"
-                        + "Feel free to ask me anything you'd like, but my true superpower lies in assisting "
-                        + "you with your code! Here are a few examples of how I can assist you:"
-                        + "</p>"
+                        + format(HiCodeAssistantBundle.get("toolwindow.chat.standard.welcome"), SettingsState.getInstance().getDisplayName())
+                        + HiCodeAssistantBundle.get("toolwindow.chat.standard.tips")
                         + "</html>",
                 false), BorderLayout.NORTH);
         panel.add(createEditorActionsListPanel(onAction), BorderLayout.CENTER);
         panel.add(UIUtil.createTextPane(
                 "<html>"
-                        + "<p style=\"margin-top: 4px; margin-bottom: 4px;\">"
-                        + "Being an AI-powered assistant, I may occasionally have surprises or make mistakes. "
-                        + "Therefore, it's wise to double-check any code or suggestions I provide."
-                        + "</p>"
+                        + HiCodeAssistantBundle.get("toolwindow.chat.standard.warn")
                         + "</html>",
                 false), BorderLayout.SOUTH);
         return panel;
@@ -54,11 +46,11 @@ public class StandardChatToolWindowLandingPanel extends ResponsePanel {
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.PAGE_AXIS));
         listPanel.setBorder(JBUI.Borders.emptyLeft(4));
         listPanel.add(Box.createVerticalStrut(4));
-        listPanel.add(createEditorActionLink(EditorAction.WRITE_TESTS, onAction));
+        listPanel.add(createEditorActionLink(EditorActionEnum.GENERATE_TESTS, onAction));
         listPanel.add(Box.createVerticalStrut(4));
-        listPanel.add(createEditorActionLink(EditorAction.EXPLAIN, onAction));
+        listPanel.add(createEditorActionLink(EditorActionEnum.EXPLAIN, onAction));
         listPanel.add(Box.createVerticalStrut(4));
-        listPanel.add(createEditorActionLink(EditorAction.FIND_BUGS, onAction));
+        listPanel.add(createEditorActionLink(EditorActionEnum.REVIEW, onAction));
         listPanel.add(Box.createVerticalStrut(4));
         return listPanel;
     }

@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.toolwindows.chat.ui;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.llms.completion.SerpResult;
 import com.hisun.codeassistant.settings.SettingsConfigurable;
 import com.hisun.codeassistant.toolwindows.chat.StreamParser;
@@ -84,7 +85,7 @@ public class ChatMessageResponseBody extends JPanel {
     }
 
     public void displayMissingCredential() {
-        var message = "API key not provided. Open <a href=\"#\">Settings</a> to set one.";
+        var message = HiCodeAssistantBundle.get("toolwindow.chat.standard.credential");
         currentlyProcessedTextPane.setText(
                 format("<html><p style=\"margin-top: 4px; margin-bottom: 8px;\">%s</p></html>", message));
         currentlyProcessedTextPane.addHyperlinkListener(e -> {
@@ -97,9 +98,7 @@ public class ChatMessageResponseBody extends JPanel {
 
     public void displayQuotaExceeded() {
         currentlyProcessedTextPane.setText("<html>"
-                + "<p style=\"margin-top: 4px; margin-bottom: 8px;\">"
-                + "You exceeded your current quota, please check your plan and billing details, "
-                + "or <a href=\"#CHANGE_PROVIDER\">change</a> to a different LLM provider.</p>"
+                + HiCodeAssistantBundle.get("toolwindow.chat.standard.quota")
                 + "</html>");
 
         currentlyProcessedTextPane.addHyperlinkListener(e -> {

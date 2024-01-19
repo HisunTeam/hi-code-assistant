@@ -3,7 +3,7 @@ Please do a Code Refactoring on the following Code. Perform the following checks
 
  - Look at the following function and refactor it into smaller logical functions to improve code maintainability. Also suggest if new/additional classes are required. Reply with suggested edited code. Keep your efforts to a minimum to avoid fractionizing the code too much. resulting functions should have ~4-30 Lines of code. If the function is already fairly simple and only serves one purpose, don't refactor it. Do not provide a refactored code sample in this case.
 
- - If you do not find optimisations, instead reply with "no optimisations found"
+ - If you do not find optimisations, instead reply in Chinese with "no optimisations found"
 
 This is the current code:
 {{selectedCode}}

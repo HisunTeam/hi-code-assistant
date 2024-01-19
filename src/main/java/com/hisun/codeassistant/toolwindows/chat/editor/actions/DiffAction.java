@@ -28,7 +28,7 @@ public class DiffAction extends AbstractAction {
     private final Point locationOnScreen;
 
     public DiffAction(@NotNull EditorEx editor, @NotNull Point locationOnScreen) {
-        super("Diff", AllIcons.Actions.DiffWithClipboard);
+        super(HiCodeAssistantBundle.get("editor.diff"), AllIcons.Actions.DiffWithClipboard);
         this.editor = editor;
         this.locationOnScreen = locationOnScreen;
     }

@@ -87,7 +87,7 @@ public class ConversationPanel extends JPanel {
 
         var bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.add(new JLabel(conversation.getUpdatedOn()
-                .format(DateTimeFormatter.ofPattern("M/d/yyyy, h:mm:ss a"))), BorderLayout.WEST);
+                .format(DateTimeFormatter.ofPattern("yyyy/M/d, h:mm:ss a"))), BorderLayout.WEST);
         if (conversation.getModel() != null) {
             bottomPanel.add(
                     new ModelIconLabel(conversation.getClientCode(), conversation.getModel()),
@@ -105,6 +105,6 @@ public class ConversationPanel extends JPanel {
         if (messages.isEmpty()) {
             return "";
         }
-        return messages.get(0).getPrompt();
+        return messages.get(0).getUserMessage();
     }
 }

@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.actions.toolwindow;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.actions.editor.EditorActionsUtil;
 import com.hisun.codeassistant.conversations.ConversationsState;
 import com.intellij.icons.AllIcons;
@@ -19,7 +20,7 @@ import static java.util.Objects.requireNonNull;
 
 public class OpenInEditorAction extends AnAction {
     public OpenInEditorAction() {
-        super("Open In Editor", "Open conversation in editor", AllIcons.Actions.SplitVertically);
+        super(HiCodeAssistantBundle.get("action.editor.open"), HiCodeAssistantBundle.get("action.editor.open.desc"), AllIcons.Actions.SplitVertically);
         EditorActionsUtil.registerOrReplaceAction(this);
     }
 
@@ -42,7 +43,7 @@ public class OpenInEditorAction extends AnAction {
             var fileContent = currentConversation
                     .getMessages()
                     .stream()
-                    .map(it -> format("### User:\n%s\n### HiCodeAssistant:\n%s\n", it.getPrompt(),
+                    .map(it -> format("### User:\n%s\n### HiCodeAssistant:\n%s\n", it.getUserMessage(),
                             it.getResponse()))
                     .collect(Collectors.joining());
             VirtualFile file = new LightVirtualFile(fileName, fileContent);

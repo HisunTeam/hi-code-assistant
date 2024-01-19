@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.toolwindows.chat.editor.actions;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.utils.file.FileUtil;
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.util.EditorHelper;
@@ -26,7 +27,7 @@ public class NewFileAction extends AbstractAction {
     private final EditorEx editor;
 
     public NewFileAction(@NotNull EditorEx editor, String fileExtension) {
-        super("Create New File", AllIcons.Actions.AddFile);
+        super(HiCodeAssistantBundle.get("toolwindow.chat.editor.action.new.description"), AllIcons.Actions.AddFile);
         this.fileExtension = fileExtension;
         this.editor = editor;
     }
@@ -66,10 +67,10 @@ public class NewFileAction extends AbstractAction {
             TextFieldWithBrowseButton textFieldWithBrowseButton,
             JBTextField fileNameTextField) {
         var dialogBuilder = new DialogBuilder(project)
-                .title("New File")
+                .title(HiCodeAssistantBundle.get("toolwindow.chat.editor.action.new.title"))
                 .centerPanel(FormBuilder.createFormBuilder()
-                        .addLabeledComponent("File name:", fileNameTextField)
-                        .addLabeledComponent("Destination:", textFieldWithBrowseButton)
+                        .addLabeledComponent(HiCodeAssistantBundle.get("toolwindow.chat.editor.action.new.file.name"), fileNameTextField)
+                        .addLabeledComponent(HiCodeAssistantBundle.get("toolwindow.chat.editor.action.new.file.desc"), textFieldWithBrowseButton)
                         .getPanel());
         dialogBuilder.addOkAction();
         dialogBuilder.addCancelAction();

@@ -13,7 +13,7 @@ public class EditAction extends AbstractAction {
     private final EditorEx editor;
 
     public EditAction(@NotNull EditorEx editor) {
-        super("Edit Source", AllIcons.Actions.EditSource);
+        super(HiCodeAssistantBundle.get("toolwindow.chat.editor.action.edit.title"), AllIcons.Actions.EditSource);
         this.editor = editor;
     }
 
