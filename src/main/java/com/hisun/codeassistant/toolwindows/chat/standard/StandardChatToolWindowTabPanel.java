@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.toolwindows.chat.standard;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.completions.ConversationType;
 import com.hisun.codeassistant.conversations.Conversation;
 import com.hisun.codeassistant.conversations.message.Message;
@@ -36,8 +37,8 @@ public class StandardChatToolWindowTabPanel extends ChatToolWindowTabPanel {
             var editor = EditorUtil.getSelectedEditor(project);
             if (editor == null || !editor.getSelectionModel().hasSelection()) {
                 OverlayUtil.showWarningBalloon(
-                        editor == null ? "Unable to locate a selected editor"
-                                : "Please select a target code before proceeding",
+                        editor == null ? HiCodeAssistantBundle.get("toolwindow.chat.standard.editor")
+                                : HiCodeAssistantBundle.get("toolwindow.chat.standard.code"),
                         locationOnScreen);
                 return;
             }

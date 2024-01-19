@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.actions.toolwindow;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.actions.editor.EditorActionsUtil;
 import com.hisun.codeassistant.utils.EditorUtil;
 import com.intellij.icons.AllIcons;
@@ -12,7 +13,7 @@ import static java.util.Objects.requireNonNull;
 
 public class ReplaceCodeInMainEditorAction extends AnAction {
     public ReplaceCodeInMainEditorAction() {
-        super("Replace in Main Editor", "Replace code in main editor", AllIcons.Actions.Replace);
+        super(HiCodeAssistantBundle.get("action.editor.replace"), HiCodeAssistantBundle.get("action.editor.replace.desc"), AllIcons.Actions.Replace);
         EditorActionsUtil.registerOrReplaceAction(this);
     }
 

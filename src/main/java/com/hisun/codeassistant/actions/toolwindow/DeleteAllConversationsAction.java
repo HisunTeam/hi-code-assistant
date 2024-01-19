@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.actions.toolwindow;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.actions.editor.EditorActionsUtil;
 import com.hisun.codeassistant.conversations.ConversationService;
@@ -14,7 +15,7 @@ public class DeleteAllConversationsAction extends AnAction {
     private final Runnable onRefresh;
 
     public DeleteAllConversationsAction(Runnable onRefresh) {
-        super("Delete All", "Delete all conversations", AllIcons.Actions.GC);
+        super(HiCodeAssistantBundle.get("action.new.chat.delete"), HiCodeAssistantBundle.get("action.new.chat.delete.desc"), AllIcons.Actions.GC);
         this.onRefresh = onRefresh;
         EditorActionsUtil.registerOrReplaceAction(this);
     }
@@ -31,8 +32,8 @@ public class DeleteAllConversationsAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent event) {
         int answer = Messages.showYesNoDialog(
-                "Are you sure you want to delete all conversations?",
-                "Clear History",
+                HiCodeAssistantBundle.get("action.new.chat.delete.message"),
+                HiCodeAssistantBundle.get("action.new.chat.delete.title"),
                 HiCodeAssistantIcons.SYSTEM_ICON);
         if (answer == Messages.YES) {
             var project = event.getProject();

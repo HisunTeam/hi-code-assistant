@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.toolwindows.chat.standard;
 
+import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.conversations.ConversationService;
 import com.hisun.codeassistant.conversations.ConversationsState;
 import com.hisun.codeassistant.settings.state.SettingsState;
@@ -53,7 +54,7 @@ public class StandardChatToolWindowTabbedPane extends JBTabbedPane {
             }
         }
 
-        var title = "Chat " + (nextIndex + 1);
+        var title = HiCodeAssistantBundle.get("action.new.chat.panel.title") + " " + (nextIndex + 1);
         super.insertTab(title, null, toolWindowPanel.getContent(), null, nextIndex);
         activeTabMapping.put(title, toolWindowPanel);
         super.setSelectedIndex(nextIndex);
@@ -126,7 +127,7 @@ public class StandardChatToolWindowTabbedPane extends JBTabbedPane {
         button.setPreferredSize(new Dimension(closeIcon.getIconWidth(), closeIcon.getIconHeight()));
         button.setBorder(BorderFactory.createEmptyBorder());
         button.setContentAreaFilled(false);
-        button.setToolTipText("Close Chat");
+        button.setToolTipText(HiCodeAssistantBundle.get("action.new.chat.close.tile"));
         button.setRolloverIcon(AllIcons.Actions.CloseHovered);
 
         return JBUI.Panels.simplePanel(4, 0)
@@ -158,13 +159,13 @@ public class StandardChatToolWindowTabbedPane extends JBTabbedPane {
         private int selectedPopupTabIndex = -1;
 
         TabPopupMenu() {
-            add(createPopupMenuItem("Close", e -> {
+            add(createPopupMenuItem(HiCodeAssistantBundle.get("action.new.chat.close"), e -> {
                 if (selectedPopupTabIndex > 0) {
                     activeTabMapping.remove(getTitleAt(selectedPopupTabIndex));
                     removeTabAt(selectedPopupTabIndex);
                 }
             }));
-            add(createPopupMenuItem("Close Other Tabs", e -> {
+            add(createPopupMenuItem(HiCodeAssistantBundle.get("action.new.chat.close.other"), e -> {
                 var selectedPopupTabTitle = getTitleAt(selectedPopupTabIndex);
                 var tabPanel = activeTabMapping.get(selectedPopupTabTitle);
 
