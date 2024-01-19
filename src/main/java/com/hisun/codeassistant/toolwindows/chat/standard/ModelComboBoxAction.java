@@ -54,6 +54,7 @@ public class ModelComboBoxAction extends ComboBoxAction {
                         OpenAIChatCompletionModel.GPT_3_5_1106_16k,
                         OpenAIChatCompletionModel.GPT_4_32k,
                         OpenAIChatCompletionModel.GPT_4,
+                        OpenAIChatCompletionModel.GPT_3_5_16k,
                         OpenAIChatCompletionModel.GPT_3_5)
                 .forEach(
                         model -> actionGroup.add(createOpenAIModelAction(model, presentation)));
