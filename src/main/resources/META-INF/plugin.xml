@@ -30,7 +30,6 @@
     <actions>
         <group id="HiCodeAssistantEditorPopup"
                text="HiCodeAssistant"
-               class="com.intellij.openapi.actionSystem.DefaultActionGroup"
                popup="true"
                icon="com.hisun.codeassistant.HiCodeAssistantIcons.SYSTEM_ICON">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
