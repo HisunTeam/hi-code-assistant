@@ -108,13 +108,13 @@ public class ModelComboBoxAction extends ComboBoxAction {
             Icon icon,
             Presentation comboBoxPresentation) {
         settings.setSelectedService(serviceType);
-        comboBoxPresentation.setIcon(icon);
-        comboBoxPresentation.setText(label);
 
         var currentConversation = ConversationsState.getCurrentConversation();
         if (currentConversation != null && !currentConversation.getMessages().isEmpty()) {
             onAddNewTab.run();
         } else {
+            comboBoxPresentation.setIcon(icon);
+            comboBoxPresentation.setText(label);
             ConversationService.getInstance().startConversation();
         }
     }
@@ -122,8 +122,8 @@ public class ModelComboBoxAction extends ComboBoxAction {
     private AnAction createOpenAIModelAction(
             OpenAIChatCompletionModel model,
             Presentation comboBoxPresentation) {
-        createModelAction(ServiceType.OPENAI, model.getDescription(), HiCodeAssistantIcons.OPENAI_ICON,
-                comboBoxPresentation);
+//        createModelAction(ServiceType.OPENAI, model.getDescription(), HiCodeAssistantIcons.OPENAI_ICON,
+//                comboBoxPresentation);
         return new AnAction(model.getDescription(), "", HiCodeAssistantIcons.OPENAI_ICON) {
             @Override
             public void update(@NotNull AnActionEvent event) {
@@ -146,8 +146,8 @@ public class ModelComboBoxAction extends ComboBoxAction {
     private AnAction createSelfHostedLanguageModelAction(
             SelfModelEnum model,
             Presentation comboBoxPresentation) {
-        createModelAction(ServiceType.SELF_HOSTED, model.getDisplayName(), HiCodeAssistantIcons.SYSTEM_ICON,
-                comboBoxPresentation);
+//        createModelAction(ServiceType.SELF_HOSTED, model.getDisplayName(), HiCodeAssistantIcons.SYSTEM_ICON,
+//                comboBoxPresentation);
         return new AnAction(model.getDisplayName(), "", HiCodeAssistantIcons.SYSTEM_ICON) {
             @Override
             public void update(@NotNull AnActionEvent event) {

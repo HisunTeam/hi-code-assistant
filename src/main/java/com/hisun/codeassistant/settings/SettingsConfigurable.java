@@ -77,6 +77,18 @@ public class SettingsConfigurable implements Configurable {
     }
 
     @Override
+    public void reset() {
+        var settings = SettingsState.getInstance();
+        var serviceSelectionForm = settingsComponent.getServiceSelectionForm();
+
+        settingsComponent.setDisplayName(settings.getDisplayName());
+        settingsComponent.setSelectedService(settings.getSelectedService());
+
+        OpenAISettingsState.getInstance().reset(serviceSelectionForm);
+        SelfHostedLanguageModelSettingsState.getInstance().reset(serviceSelectionForm);
+    }
+
+    @Override
     public void disposeUIResources() {
         if (parentDisposable != null) {
             Disposer.dispose(parentDisposable);
