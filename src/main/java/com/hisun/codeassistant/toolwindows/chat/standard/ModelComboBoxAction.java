@@ -3,8 +3,8 @@ package com.hisun.codeassistant.toolwindows.chat.standard;
 import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.conversations.ConversationService;
 import com.hisun.codeassistant.conversations.ConversationsState;
-import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
+import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
 import com.hisun.codeassistant.settings.service.ServiceType;
 import com.hisun.codeassistant.settings.state.OpenAISettingsState;
 import com.hisun.codeassistant.settings.state.SelfHostedLanguageModelSettingsState;
@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.Objects;
 
 public class ModelComboBoxAction extends ComboBoxAction {
     private final Runnable onAddNewTab;
@@ -83,25 +84,6 @@ public class ModelComboBoxAction extends ComboBoxAction {
         }
     }
 
-    private AnAction createModelAction(
-            ServiceType serviceType,
-            String label,
-            Icon icon,
-            Presentation comboBoxPresentation) {
-        return new AnAction(label, "", icon) {
-            @Override
-            public void update(@NotNull AnActionEvent event) {
-                var presentation = event.getPresentation();
-                presentation.setEnabled(!presentation.getText().equals(comboBoxPresentation.getText()));
-            }
-
-            @Override
-            public void actionPerformed(@NotNull AnActionEvent e) {
-                handleProviderChange(serviceType, label, icon, comboBoxPresentation);
-            }
-        };
-    }
-
     private void handleProviderChange(
             ServiceType serviceType,
             String label,
@@ -110,20 +92,22 @@ public class ModelComboBoxAction extends ComboBoxAction {
         settings.setSelectedService(serviceType);
 
         var currentConversation = ConversationsState.getCurrentConversation();
-        if (currentConversation != null && !currentConversation.getMessages().isEmpty()) {
-            onAddNewTab.run();
-        } else {
+        if (Objects.isNull(currentConversation) || currentConversation.getMessages().isEmpty()) {
             comboBoxPresentation.setIcon(icon);
             comboBoxPresentation.setText(label);
-            ConversationService.getInstance().startConversation();
+            if (Objects.isNull(currentConversation)) {
+                ConversationService.getInstance().startConversation();
+            } else {
+                ConversationService.getInstance().updateConversation(currentConversation);
+            }
+        } else {
+            onAddNewTab.run();
         }
     }
 
     private AnAction createOpenAIModelAction(
             OpenAIChatCompletionModel model,
             Presentation comboBoxPresentation) {
-//        createModelAction(ServiceType.OPENAI, model.getDescription(), HiCodeAssistantIcons.OPENAI_ICON,
-//                comboBoxPresentation);
         return new AnAction(model.getDescription(), "", HiCodeAssistantIcons.OPENAI_ICON) {
             @Override
             public void update(@NotNull AnActionEvent event) {
@@ -146,8 +130,6 @@ public class ModelComboBoxAction extends ComboBoxAction {
     private AnAction createSelfHostedLanguageModelAction(
             SelfModelEnum model,
             Presentation comboBoxPresentation) {
-//        createModelAction(ServiceType.SELF_HOSTED, model.getDisplayName(), HiCodeAssistantIcons.SYSTEM_ICON,
-//                comboBoxPresentation);
         return new AnAction(model.getDisplayName(), "", HiCodeAssistantIcons.SYSTEM_ICON) {
             @Override
             public void update(@NotNull AnActionEvent event) {

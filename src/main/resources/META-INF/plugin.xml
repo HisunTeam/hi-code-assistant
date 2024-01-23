@@ -20,7 +20,7 @@
         <applicationService serviceImplementation="com.hisun.codeassistant.conversations.ConversationsState"/>
 
         <toolWindow id="HiCodeAssistant" icon="com.hisun.codeassistant.HiCodeAssistantIcons.SYSTEM_ICON" anchor="right"
-                    factoryClass="com.hisun.codeassistant.toolwindows.ProjectToolWindowFactory"/>
+                    doNotActivateOnStart="true" factoryClass="com.hisun.codeassistant.toolwindows.ProjectToolWindowFactory"/>
         <notificationGroup id="HiCodeAssistant Notification Group" displayType="BALLOON" key="notification.group.name"/>
 
     </extensions>

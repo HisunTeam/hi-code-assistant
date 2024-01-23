@@ -112,6 +112,13 @@ public final class ConversationService {
         return conversation;
     }
 
+    public void updateConversation(Conversation conversation) {
+        var selectedService = SettingsState.getInstance().getSelectedService();
+        conversation.setClientCode(selectedService.getCompletionCode());
+        conversation.setUpdatedOn(LocalDateTime.now());
+        conversation.setModel(getModelForSelectedService(selectedService));
+    }
+
     public void clearAll() {
         conversationState.getConversationsMapping().clear();
         conversationState.setCurrentConversation(null);
