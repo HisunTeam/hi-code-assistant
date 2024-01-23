@@ -15,25 +15,26 @@ import com.intellij.openapi.extensions.PluginId;
 import com.intellij.openapi.project.Project;
 import org.apache.commons.text.CaseUtils;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 
 public class EditorActionsUtil {
-    public static Map<String, String> DEFAULT_ACTIONS = new LinkedHashMap<>(Map.of(
-            EditorActionEnum.REVIEW.getLabel(), EditorActionEnum.REVIEW.getPrompt(),
-            EditorActionEnum.REFACTOR.getLabel(), EditorActionEnum.REFACTOR.getPrompt(),
-            EditorActionEnum.PERFORMANCE.getLabel(), EditorActionEnum.PERFORMANCE.getPrompt(),
-            EditorActionEnum.SECURITY.getLabel(), EditorActionEnum.SECURITY.getPrompt(),
-            EditorActionEnum.OPTIMIZE.getLabel(), EditorActionEnum.OPTIMIZE.getPrompt(),
-            EditorActionEnum.COMMENT.getLabel(), EditorActionEnum.COMMENT.getPrompt(),
-            EditorActionEnum.EXPLAIN.getLabel(), EditorActionEnum.EXPLAIN.getPrompt(),
-            EditorActionEnum.GENERATE_TESTS.getLabel(), EditorActionEnum.GENERATE_TESTS.getPrompt()));
+
+    public static ArrayList<EditorActionPair> DEFAULT_ACTIONS = new ArrayList<>();
+
+    static {
+        DEFAULT_ACTIONS.add(new EditorActionPair(EditorActionEnum.REVIEW.getLabel(), EditorActionEnum.REVIEW.getPrompt()));
+        DEFAULT_ACTIONS.add(new EditorActionPair(EditorActionEnum.REFACTOR.getLabel(), EditorActionEnum.REFACTOR.getPrompt()));
+        DEFAULT_ACTIONS.add(new EditorActionPair(EditorActionEnum.PERFORMANCE.getLabel(), EditorActionEnum.PERFORMANCE.getPrompt()));
+        DEFAULT_ACTIONS.add(new EditorActionPair(EditorActionEnum.SECURITY.getLabel(), EditorActionEnum.SECURITY.getPrompt()));
+        DEFAULT_ACTIONS.add(new EditorActionPair(EditorActionEnum.OPTIMIZE.getLabel(), EditorActionEnum.OPTIMIZE.getPrompt()));
+        DEFAULT_ACTIONS.add(new EditorActionPair(EditorActionEnum.COMMENT.getLabel(), EditorActionEnum.COMMENT.getPrompt()));
+        DEFAULT_ACTIONS.add(new EditorActionPair(EditorActionEnum.EXPLAIN.getLabel(), EditorActionEnum.EXPLAIN.getPrompt()));
+        DEFAULT_ACTIONS.add(new EditorActionPair(EditorActionEnum.GENERATE_TESTS.getLabel(), EditorActionEnum.GENERATE_TESTS.getPrompt()));
+    }
 
     public static void refreshActions() {
         AnAction actionGroup =
@@ -45,13 +46,13 @@ public class EditorActionsUtil {
             group.addSeparator();
 
             var configuredActions = ConfigurationState.getInstance().getTableData();
-            configuredActions.forEach((label, prompt) -> {
-                var action = new BaseEditorAction(label, label) {
+            configuredActions.forEach(ActionPair -> {
+                var action = new BaseEditorAction(ActionPair.getLabel(), ActionPair.getLabel()) {
                     @Override
                     protected void actionPerformed(Project project, Editor editor, String selectedText) {
                         var fileExtension = FileUtil.getFileExtension(((EditorImpl) editor).getVirtualFile().getName());
-                        var message = new Message(prompt.replace("{{selectedCode}}", format("\n```%s\n%s\n```", fileExtension, selectedText)));
-                        message.setUserMessage(Objects.requireNonNull(EditorActionEnum.getEnumByLabel(label)).getUserMessage());
+                        var message = new Message(ActionPair.getPrompt().replace("{{selectedCode}}", format("\n```%s\n%s\n```", fileExtension, selectedText)));
+                        message.setUserMessage(Objects.requireNonNull(EditorActionEnum.getEnumByLabel(ActionPair.getLabel())).getUserMessage());
                         var toolWindowContentManager = project.getService(StandardChatToolWindowContentManager.class);
                         toolWindowContentManager.getToolWindow().show();
                         message.setReferencedFilePaths(

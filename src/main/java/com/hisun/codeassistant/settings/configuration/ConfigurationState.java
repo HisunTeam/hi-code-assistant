@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.settings.configuration;
 
+import com.hisun.codeassistant.actions.editor.EditorActionPair;
 import com.hisun.codeassistant.actions.editor.EditorActionsUtil;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
@@ -9,6 +10,8 @@ import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static com.hisun.codeassistant.completions.CompletionRequestProvider.COMPLETION_SYSTEM_PROMPT;
@@ -20,7 +23,7 @@ public class ConfigurationState implements PersistentStateComponent<Configuratio
     private int maxTokens = 1000;
     private double temperature = 0.1;
     private boolean autoFormattingEnabled = true;
-    private Map<String, String> tableData = EditorActionsUtil.DEFAULT_ACTIONS;
+    private ArrayList<EditorActionPair> tableData = EditorActionsUtil.DEFAULT_ACTIONS;
 
     public static ConfigurationState getInstance() {
         return ApplicationManager.getApplication().getService(ConfigurationState.class);
