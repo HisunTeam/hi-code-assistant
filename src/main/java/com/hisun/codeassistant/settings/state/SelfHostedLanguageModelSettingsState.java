@@ -38,19 +38,19 @@ public class SelfHostedLanguageModelSettingsState implements PersistentStateComp
 
     public boolean isModified(ServiceSelectionForm serviceSelectionForm) {
         return !serviceSelectionForm.getSelfHostedLanguageModelBaseHost().equals(baseHost)
-                || !serviceSelectionForm.getSelfHostedLanguageModelPath().equals(path)
+//                || !serviceSelectionForm.getSelfHostedLanguageModelPath().equals(path)
                 || !serviceSelectionForm.getSelfHostedLanguageModel().equals(model);
     }
 
     public void apply(ServiceSelectionForm serviceSelectionForm) {
         baseHost = serviceSelectionForm.getSelfHostedLanguageModelBaseHost();
-        path = serviceSelectionForm.getSelfHostedLanguageModelPath();
+//        path = serviceSelectionForm.getSelfHostedLanguageModelPath();
         model = serviceSelectionForm.getSelfHostedLanguageModel();
     }
 
     public void reset(ServiceSelectionForm serviceSelectionForm) {
         serviceSelectionForm.setSelfHostedLanguageModelBaseHost(baseHost);
-        serviceSelectionForm.setSelfHostedLanguageModelPath(path);
+//        serviceSelectionForm.setSelfHostedLanguageModelPath(path);
         serviceSelectionForm.setSelfHostedLanguageModel(model);
     }
 

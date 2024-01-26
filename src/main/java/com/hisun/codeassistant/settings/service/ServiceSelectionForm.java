@@ -29,7 +29,7 @@ public class ServiceSelectionForm {
     private final ComboBox<OpenAIChatCompletionModel> openAICompletionModelComboBox;
 
     private final JBTextField selfHostedLanguageModelBaseHostField;
-    private final JBTextField selfHostedLanguageModelPathField;
+//    private final JBTextField selfHostedLanguageModelPathField;
     @Getter
     private final JPanel selfHostedLanguageModelServiceSectionPanel;
     private final ComboBox<SelfModelEnum> selfHostedLanguageModelComboBox;
@@ -52,7 +52,7 @@ public class ServiceSelectionForm {
 
         var selfHostedLanguageModelSettings = SelfHostedLanguageModelSettingsState.getInstance();
         selfHostedLanguageModelBaseHostField = new JBTextField(selfHostedLanguageModelSettings.getBaseHost(), 30);
-        selfHostedLanguageModelPathField = new JBTextField(selfHostedLanguageModelSettings.getPath(), 30);
+//        selfHostedLanguageModelPathField = new JBTextField(selfHostedLanguageModelSettings.getPath(), 30);
 
         var selectedSelfHostedLanguageModel = SelfModelEnum.fromName(selfHostedLanguageModelSettings.getModel());
 
@@ -115,10 +115,10 @@ public class ServiceSelectionForm {
                         .withLabel(HiCodeAssistantBundle.get(
                                 "settingsConfigurable.shared.baseHost.label"))
                         .resizeX(false))
-                .add(UI.PanelFactory.panel(selfHostedLanguageModelPathField)
-                        .withLabel(HiCodeAssistantBundle.get(
-                                "settingsConfigurable.shared.path.label"))
-                        .resizeX(false))
+//                .add(UI.PanelFactory.panel(selfHostedLanguageModelPathField)
+//                        .withLabel(HiCodeAssistantBundle.get(
+//                                "settingsConfigurable.shared.path.label"))
+//                        .resizeX(false))
                 .createPanel();
 
         return FormBuilder.createFormBuilder()
@@ -195,12 +195,12 @@ public class ServiceSelectionForm {
                 .getName();
     }
 
-    public void setSelfHostedLanguageModelPath(String path) {
-        selfHostedLanguageModelPathField.setText(path);
-    }
-
-    public String getSelfHostedLanguageModelPath() {
-        return selfHostedLanguageModelPathField.getText();
-    }
+//    public void setSelfHostedLanguageModelPath(String path) {
+//        selfHostedLanguageModelPathField.setText(path);
+//    }
+//
+//    public String getSelfHostedLanguageModelPath() {
+//        return selfHostedLanguageModelPathField.getText();
+//    }
 
 }
