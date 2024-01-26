@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Data
-@NoArgsConstructor(force = true)
+//@NoArgsConstructor(force = true)
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class ChatMessage {
@@ -13,7 +13,7 @@ public class ChatMessage {
      * Must be either 'system', 'user', 'assistant' or 'function'.<br>
      * You may use {@link ChatMessageRole} enum.
      */
-    @NonNull
+//    @NonNull
     String role;
     @JsonInclude() // content should always exist in the call, even if it is null
     String content;

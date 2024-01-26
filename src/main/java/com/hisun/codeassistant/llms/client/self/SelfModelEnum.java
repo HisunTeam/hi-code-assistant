@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum SelfModelEnum {
-    ChatGLM3_6B("chatglm3-6b", "THUDM/chatglm3-6b", "ChatGLM3-6B(8k)", 8192),
+    ChatGLM3_6B("chatglm3-6b", "openai/THUDM/chatglm3-6b", "ChatGLM3-6B(8k)", 8192),
     GPT3_5("gpt-3.5", "gpt-3.5-turbo", "GPT-3.5(4k)", 4096);
     // model name
     private final String name;
