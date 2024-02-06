@@ -49,16 +49,16 @@ public class ModelComboBoxAction extends ComboBoxAction {
     protected @NotNull DefaultActionGroup createPopupActionGroup(@NotNull JComponent button, @NotNull DataContext dataContext) {
         var presentation = ((ComboBoxButton) button).getPresentation();
         var actionGroup = new DefaultActionGroup();
-        actionGroup.addSeparator("OpenAI");
-        List.of(
-                        OpenAIChatCompletionModel.GPT_4_1106_128k,
-                        OpenAIChatCompletionModel.GPT_3_5_1106_16k,
-                        OpenAIChatCompletionModel.GPT_4_32k,
-                        OpenAIChatCompletionModel.GPT_4,
-                        OpenAIChatCompletionModel.GPT_3_5_16k,
-                        OpenAIChatCompletionModel.GPT_3_5)
-                .forEach(
-                        model -> actionGroup.add(createOpenAIModelAction(model, presentation)));
+//        actionGroup.addSeparator("OpenAI");
+//        List.of(
+//                        OpenAIChatCompletionModel.GPT_4_1106_128k,
+//                        OpenAIChatCompletionModel.GPT_3_5_1106_16k,
+//                        OpenAIChatCompletionModel.GPT_4_32k,
+//                        OpenAIChatCompletionModel.GPT_4,
+//                        OpenAIChatCompletionModel.GPT_3_5_16k,
+//                        OpenAIChatCompletionModel.GPT_3_5)
+//                .forEach(
+//                        model -> actionGroup.add(createOpenAIModelAction(model, presentation)));
         actionGroup.addSeparator("HiCodeAssistant");
         List.of(SelfModelEnum.values()).forEach(modelEnum -> actionGroup.add(createSelfHostedLanguageModelAction(modelEnum, presentation)));
         return actionGroup;

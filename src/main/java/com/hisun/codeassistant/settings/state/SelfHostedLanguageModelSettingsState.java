@@ -18,9 +18,9 @@ import org.jetbrains.annotations.Nullable;
 public class SelfHostedLanguageModelSettingsState implements PersistentStateComponent<SelfHostedLanguageModelSettingsState> {
 
     private static final String BASE_PATH = "/v1/chat/completions";
-    private String baseHost = "";
+    private String baseHost = "http://10.9.50.190:8000";
     private String path = BASE_PATH;
-    private String model = SelfModelEnum.ChatGLM3_6B.getName();
+    private String model = SelfModelEnum.GPT_3_5_1106_16k.getName();
 
     public static SelfHostedLanguageModelSettingsState getInstance() {
         return ApplicationManager.getApplication().getService(SelfHostedLanguageModelSettingsState.class);

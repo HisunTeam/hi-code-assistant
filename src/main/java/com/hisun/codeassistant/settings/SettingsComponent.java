@@ -31,12 +31,13 @@ public class SettingsComponent {
         var cardLayout = new CardLayout();
         var cards = new JPanel(cardLayout);
         cards.add(serviceSelectionForm.getSelfHostedLanguageModelServiceSectionPanel(), ServiceType.SELF_HOSTED.getCode());
-        cards.add(serviceSelectionForm.getOpenAIServiceSectionPanel(), ServiceType.OPENAI.getCode());
+//        cards.add(serviceSelectionForm.getOpenAIServiceSectionPanel(), ServiceType.OPENAI.getCode());
         var serviceComboBoxModel = new DefaultComboBoxModel<ServiceType>();
         serviceComboBoxModel.addAll(Arrays.stream(ServiceType.values()).toList());
         serviceComboBox = new ComboBox<>(serviceComboBoxModel);
         // 需要与cards的顺序一致
         serviceComboBox.setSelectedItem(ServiceType.SELF_HOSTED);
+        serviceComboBox.setEnabled(false);
         serviceComboBox.setPreferredSize(displayNameField.getPreferredSize());
         var serviceInputValidator = createInputValidator(parentDisposable, serviceComboBox);
         serviceInputValidator.revalidate();
@@ -49,9 +50,9 @@ public class SettingsComponent {
                 .addLabeledComponent(
                         HiCodeAssistantBundle.get("settingsConfigurable.displayName.label"),
                         displayNameField)
-                .addLabeledComponent(
-                        HiCodeAssistantBundle.get("settingsConfigurable.service.label"),
-                        serviceComboBox)
+//                .addLabeledComponent(
+//                        HiCodeAssistantBundle.get("settingsConfigurable.service.label"),
+//                        serviceComboBox)
                 .addComponent(cards)
                 .addComponentFillVertically(new JPanel(), 0)
                 .getPanel();
