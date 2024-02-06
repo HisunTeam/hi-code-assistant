@@ -9,6 +9,7 @@ import com.hisun.codeassistant.settings.state.SettingsState;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.Service;
 import okhttp3.sse.EventSource;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 
@@ -45,7 +46,7 @@ public final class CompletionRequestService {
     public boolean isRequestAllowed() {
         var selectedService = SettingsState.getInstance().getSelectedService();
         if (selectedService == ServiceType.SELF_HOSTED) {
-            return Objects.nonNull(SelfHostedLanguageModelSettingsState.getInstance().getBaseHost());
+            return StringUtils.isBlank(SelfHostedLanguageModelSettingsState.getInstance().getBaseHost());
         }
         if (selectedService == ServiceType.OPENAI) {
             return OpenAICredentialsManager.getInstance().isApiKeySet();

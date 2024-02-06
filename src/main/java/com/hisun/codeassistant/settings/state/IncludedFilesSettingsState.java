@@ -8,7 +8,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@State(name = "HiCodeAssistant_IncludedFilesSettings_0206", storages = @Storage("HiCodeAssistant_IncludedFilesSettings_0206.xml"))
+@State(name = "HiCodeAssistant_IncludedFilesSettings", storages = @Storage("HiCodeAssistant_IncludedFilesSettings.xml"))
 public class IncludedFilesSettingsState implements PersistentStateComponent<IncludedFilesSettingsState> {
     public static final String DEFAULT_PROMPT_TEMPLATE =
             "Use the following context to answer question at the end:\n\n"

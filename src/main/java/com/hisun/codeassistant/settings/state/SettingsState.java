@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import static java.lang.String.format;
 
 @Setter
-@State(name = "HiCodeAssistant_GeneralSettings_0206", storages = @Storage("HiCodeAssistant_GeneralSettings_0206.xml"))
+@State(name = "HiCodeAssistant_GeneralSettings", storages = @Storage("HiCodeAssistant_GeneralSettings.xml"))
 public class SettingsState implements PersistentStateComponent<SettingsState> {
     private String email = "";
     private String displayName = "";

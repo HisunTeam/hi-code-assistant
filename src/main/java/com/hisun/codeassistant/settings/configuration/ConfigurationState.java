@@ -17,7 +17,7 @@ import java.util.Map;
 import static com.hisun.codeassistant.completions.CompletionRequestProvider.COMPLETION_SYSTEM_PROMPT;
 
 @Data
-@State(name = "HiCodeAssistant_ConfigurationSettings_0206", storages = @Storage("HiCodeAssistant_ConfigurationSettings_0206.xml"))
+@State(name = "HiCodeAssistant_ConfigurationSettings", storages = @Storage("HiCodeAssistant_ConfigurationSettings.xml"))
 public class ConfigurationState implements PersistentStateComponent<ConfigurationState> {
     private String systemPrompt = COMPLETION_SYSTEM_PROMPT;
     private int maxTokens = 1000;

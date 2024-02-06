@@ -15,14 +15,14 @@ import org.jetbrains.annotations.Nullable;
 
 @Setter
 @Getter
-@State(name = "HiCodeAssistant_OpenAISettings_0206", storages = @Storage("HiCodeAssistant_OpenAISettings_0206.xml"))
+@State(name = "HiCodeAssistant_OpenAISettings", storages = @Storage("HiCodeAssistant_OpenAISettings.xml"))
 public class OpenAISettingsState implements PersistentStateComponent<OpenAISettingsState> {
     private static final String BASE_PATH = "/v1/chat/completions";
 
     private String organization = "";
     private String baseHost = "https://api.openai.com";
     private String path = BASE_PATH;
-    private String model = OpenAIChatCompletionModel.GPT_3_5.getCode();
+    private String model = OpenAIChatCompletionModel.GPT_3_5_1106_16k.getCode();
     private boolean openAIQuotaExceeded;
 
     public static OpenAISettingsState getInstance() {
