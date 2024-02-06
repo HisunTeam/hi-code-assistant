@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Setter
 @Getter
-@State(name = "HiCodeAssistant_OpenAISettings", storages = @Storage("HiCodeAssistant_OpenAISettings.xml"))
+@State(name = "HiCodeAssistant_OpenAISettings_0206", storages = @Storage("HiCodeAssistant_OpenAISettings_0206.xml"))
 public class OpenAISettingsState implements PersistentStateComponent<OpenAISettingsState> {
     private static final String BASE_PATH = "/v1/chat/completions";
 

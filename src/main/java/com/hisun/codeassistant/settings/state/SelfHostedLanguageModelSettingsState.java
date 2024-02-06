@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Setter
 @Getter
-@State(name = "HiCodeAssistant_SelfHostedLanguageModelSettings", storages = @Storage("HiCodeAssistant_SelfHostedLanguageModelSettings.xml"))
+@State(name = "HiCodeAssistant_SelfHostedLanguageModelSettings_0206", storages = @Storage("HiCodeAssistant_SelfHostedLanguageModelSettings_0206.xml"))
 public class SelfHostedLanguageModelSettingsState implements PersistentStateComponent<SelfHostedLanguageModelSettingsState> {
 
     private static final String BASE_PATH = "/v1/chat/completions";

@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
-@State(name = "HiCodeAssistant_ConversationsState", storages = @Storage("HiCodeAssistant_ConversationsState.xml"))
+@State(name = "HiCodeAssistant_ConversationsState_0206", storages = @Storage("HiCodeAssistant_ConversationsState_0206.xml"))
 public class ConversationsState implements PersistentStateComponent<ConversationsState> {
     @OptionTag(converter = ConversationsConverter.class)
     public ConversationsContainer conversationsContainer = new ConversationsContainer();

@@ -33,11 +33,11 @@ public class SettingsComponent {
         cards.add(serviceSelectionForm.getSelfHostedLanguageModelServiceSectionPanel(), ServiceType.SELF_HOSTED.getCode());
 //        cards.add(serviceSelectionForm.getOpenAIServiceSectionPanel(), ServiceType.OPENAI.getCode());
         var serviceComboBoxModel = new DefaultComboBoxModel<ServiceType>();
-        serviceComboBoxModel.addAll(Arrays.stream(ServiceType.values()).toList());
+//        serviceComboBoxModel.addAll(Arrays.stream(ServiceType.values()).toList());
+        serviceComboBoxModel.addElement(ServiceType.OPENAI);
         serviceComboBox = new ComboBox<>(serviceComboBoxModel);
         // 需要与cards的顺序一致
         serviceComboBox.setSelectedItem(ServiceType.SELF_HOSTED);
-        serviceComboBox.setEnabled(false);
         serviceComboBox.setPreferredSize(displayNameField.getPreferredSize());
         var serviceInputValidator = createInputValidator(parentDisposable, serviceComboBox);
         serviceInputValidator.revalidate();
