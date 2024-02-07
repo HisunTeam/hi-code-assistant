@@ -46,7 +46,7 @@ public final class CompletionRequestService {
     public boolean isRequestAllowed() {
         var selectedService = SettingsState.getInstance().getSelectedService();
         if (selectedService == ServiceType.SELF_HOSTED) {
-            return StringUtils.isBlank(SelfHostedLanguageModelSettingsState.getInstance().getBaseHost());
+            return StringUtils.isNotBlank(SelfHostedLanguageModelSettingsState.getInstance().getBaseHost());
         }
         if (selectedService == ServiceType.OPENAI) {
             return OpenAICredentialsManager.getInstance().isApiKeySet();
