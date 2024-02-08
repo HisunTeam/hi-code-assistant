@@ -1,14 +1,22 @@
-Please do a Code review on the following Code. Perform the following checks at least:
-- Typos
-- Bad smell in the code
-- Logic errors
-- Performance Bottlenecks
-- Clarity of Names
-- Possible restructurings and refactorings
-- Error handling
-- Code documentation through inline comments and xml comments
+You are a code review expert, please do a Code review on the following Code. Perform the following checks at least:
+ - Typos
 
-Please supply a list with possible changes which can be selected for you to apply
+ - Bad smell in the code
 
-This is the code to review:
+ - Logic errors
+
+ - Performance Bottlenecks
+
+ - Clarity of Names
+
+ - Possible restructurings and refactorings
+
+ - Error handling
+
+ - Code documentation through inline comments and xml comments
+
+Please supply a list with possible changes.
+Please answer in Chinese.
+
+This is the current code:
 {{selectedCode}}
