@@ -59,10 +59,10 @@ public class StandardChatToolWindowTabbedPane extends JBTabbedPane {
         activeTabMapping.put(title, toolWindowPanel);
         super.setSelectedIndex(nextIndex);
 
-        if (nextIndex > 0) {
+//        if (nextIndex > 0) {
             setTabComponentAt(nextIndex, createCloseableTabButtonPanel(title));
             SwingUtilities.invokeLater(toolWindowPanel::requestFocusForTextArea);
-        }
+//        }
 
         Disposer.register(parentDisposable, toolWindowPanel);
     }

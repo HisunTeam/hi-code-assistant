@@ -22,7 +22,7 @@ public class OpenAISettingsState implements PersistentStateComponent<OpenAISetti
     private String organization = "";
     private String baseHost = "https://api.openai.com";
     private String path = BASE_PATH;
-    private String model = OpenAIChatCompletionModel.GPT_3_5_1106_16k.getCode();
+    private String model = OpenAIChatCompletionModel.GPT_3_5_0125_16k.getCode();
     private boolean openAIQuotaExceeded;
 
     public static OpenAISettingsState getInstance() {

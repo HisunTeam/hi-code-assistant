@@ -50,16 +50,8 @@ public class ModelComboBoxAction extends ComboBoxAction {
         var presentation = ((ComboBoxButton) button).getPresentation();
         var actionGroup = new DefaultActionGroup();
         actionGroup.addSeparator("OpenAI");
-        List.of(
-//                        OpenAIChatCompletionModel.GPT_4_1106_128k,
-                        OpenAIChatCompletionModel.GPT_3_5_1106_16k
-//                        OpenAIChatCompletionModel.GPT_4_32k,
-//                        OpenAIChatCompletionModel.GPT_4,
-//                        OpenAIChatCompletionModel.GPT_3_5_16k,
-//                        OpenAIChatCompletionModel.GPT_3_5)
-                )
-                .forEach(
-                        model -> actionGroup.add(createOpenAIModelAction(model, presentation)));
+        List.of(OpenAIChatCompletionModel.GPT_4_0125_128k, OpenAIChatCompletionModel.GPT_3_5_0125_16k)
+                .forEach(model -> actionGroup.add(createOpenAIModelAction(model, presentation)));
         actionGroup.addSeparator("HiCodeAssistant");
         List.of(SelfModelEnum.values()).forEach(modelEnum -> actionGroup.add(createSelfHostedLanguageModelAction(modelEnum, presentation)));
         return actionGroup;
@@ -113,7 +105,9 @@ public class ModelComboBoxAction extends ComboBoxAction {
             @Override
             public void update(@NotNull AnActionEvent event) {
                 var presentation = event.getPresentation();
-                presentation.setEnabled(!presentation.getText().equals(comboBoxPresentation.getText()));
+                boolean sameIcon = presentation.getIcon().equals(comboBoxPresentation.getIcon());
+                boolean sameText = presentation.getText().equals(comboBoxPresentation.getText());
+                presentation.setEnabled(!sameIcon || !sameText);
             }
 
             @Override
@@ -135,7 +129,9 @@ public class ModelComboBoxAction extends ComboBoxAction {
             @Override
             public void update(@NotNull AnActionEvent event) {
                 var presentation = event.getPresentation();
-                presentation.setEnabled(!presentation.getText().equals(comboBoxPresentation.getText()));
+                boolean sameIcon = presentation.getIcon().equals(comboBoxPresentation.getIcon());
+                boolean sameText = presentation.getText().equals(comboBoxPresentation.getText());
+                presentation.setEnabled(!sameIcon || !sameText);
             }
 
             @Override

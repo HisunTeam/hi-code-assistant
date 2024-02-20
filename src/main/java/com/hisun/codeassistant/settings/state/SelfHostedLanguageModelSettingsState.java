@@ -20,7 +20,7 @@ public class SelfHostedLanguageModelSettingsState implements PersistentStateComp
     private static final String BASE_PATH = "/v1/chat/completions";
     private String baseHost = "http://10.9.50.190:8000";
     private String path = BASE_PATH;
-    private String model = SelfModelEnum.GPT_3_5_1106_16k.getName();
+    private String model = SelfModelEnum.GPT_3_5_0125_16k.getName();
 
     public static SelfHostedLanguageModelSettingsState getInstance() {
         return ApplicationManager.getApplication().getService(SelfHostedLanguageModelSettingsState.class);
