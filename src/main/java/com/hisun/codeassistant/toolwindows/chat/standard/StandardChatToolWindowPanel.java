@@ -79,8 +79,8 @@ public class StandardChatToolWindowPanel extends SimpleToolWindowPanel {
         var actionGroup = new DefaultCompactActionGroup("TOOLBAR_ACTION_GROUP", false);
         actionGroup.add(new CreateNewConversationAction(onAddNewTab));
         actionGroup.add(new ClearChatWindowAction(() -> tabbedPane.resetCurrentlyActiveTabPanel(project)));
-        actionGroup.addSeparator();
-        actionGroup.add(new OpenInEditorAction());
+//        actionGroup.addSeparator();
+//        actionGroup.add(new OpenInEditorAction());
 
         var toolbar = ActionManager.getInstance()
                 .createActionToolbar("NAVIGATION_BAR_TOOLBAR", actionGroup, true);

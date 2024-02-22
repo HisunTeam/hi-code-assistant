@@ -16,9 +16,7 @@ import static java.lang.String.format;
 @Setter
 @State(name = "HiCodeAssistant_GeneralSettings", storages = @Storage("HiCodeAssistant_GeneralSettings.xml"))
 public class SettingsState implements PersistentStateComponent<SettingsState> {
-    private String email = "";
     private String displayName = "";
-    private boolean previouslySignedIn;
     private ServiceType selectedService = ServiceType.SELF_HOSTED;
 
     public SettingsState() {
@@ -56,10 +54,6 @@ public class SettingsState implements PersistentStateComponent<SettingsState> {
         };
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public String getDisplayName() {
         if (displayName == null || displayName.isEmpty()) {
             var systemUserName = System.getProperty("user.name");
@@ -69,10 +63,6 @@ public class SettingsState implements PersistentStateComponent<SettingsState> {
             return systemUserName;
         }
         return displayName;
-    }
-
-    public boolean isPreviouslySignedIn() {
-        return previouslySignedIn;
     }
 
     public ServiceType getSelectedService() {

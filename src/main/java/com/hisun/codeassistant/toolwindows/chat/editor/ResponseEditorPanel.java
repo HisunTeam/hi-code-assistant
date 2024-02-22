@@ -157,13 +157,13 @@ public class ResponseEditorPanel extends JPanel implements Disposable {
         wrapper.add(new IconActionButton(new ReplaceSelectionAction(editor)));
 
         var menu = new JBPopupMenu();
-        menu.add(new JBMenuItem(new DiffAction(editorEx, menu.getLocation())));
+//        menu.add(new JBMenuItem(new DiffAction(editorEx, menu.getLocation())));
         menu.add(new JBMenuItem(new EditAction(editorEx)));
         menu.add(new JBMenuItem(new NewFileAction(editorEx, extension)));
 
         var toolbar = ActionManager.getInstance()
                 .createActionToolbar("NAVIGATION_BAR_TOOLBAR", actionGroup, true);
-        actionGroup.add(new AnAction("Editor Actions", "Editor Actions", AllIcons.General.GearPlain) {
+        actionGroup.add(new AnAction(HiCodeAssistantBundle.get("toolwindow.chat.editor.action"), HiCodeAssistantBundle.get("toolwindow.chat.editor.action"), AllIcons.General.GearPlain) {
             @Override
             public void actionPerformed(@NotNull AnActionEvent e) {
                 menu.show(e.getInputEvent().getComponent(), 0, 0);

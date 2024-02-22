@@ -1,6 +1,7 @@
 package com.hisun.codeassistant.toolwindows.chat.editor.actions;
 
 import com.hisun.codeassistant.HiCodeAssistantBundle;
+import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.actions.ActionType;
 import com.hisun.codeassistant.actions.TrackableAction;
 import com.hisun.codeassistant.ui.OverlayUtil;
@@ -18,7 +19,8 @@ public class ReplaceSelectionAction extends TrackableAction {
                 editor,
                 HiCodeAssistantBundle.get("toolwindow.chat.editor.action.replaceSelection.title"),
                 HiCodeAssistantBundle.get("toolwindow.chat.editor.action.replaceSelection.description"),
-                AllIcons.Actions.Replace,
+//                llIcons.Actions.Replace,
+                HiCodeAssistantIcons.REPLACE_ICON,
                 ActionType.REPLACE_IN_MAIN_EDITOR);
     }
 

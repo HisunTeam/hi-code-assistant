@@ -160,10 +160,10 @@ public class StandardChatToolWindowTabbedPane extends JBTabbedPane {
 
         TabPopupMenu() {
             add(createPopupMenuItem(HiCodeAssistantBundle.get("action.new.chat.close"), e -> {
-                if (selectedPopupTabIndex > 0) {
+//                if (selectedPopupTabIndex > 0) {
                     activeTabMapping.remove(getTitleAt(selectedPopupTabIndex));
                     removeTabAt(selectedPopupTabIndex);
-                }
+//                }
             }));
             add(createPopupMenuItem(HiCodeAssistantBundle.get("action.new.chat.close.other"), e -> {
                 var selectedPopupTabTitle = getTitleAt(selectedPopupTabIndex);
@@ -178,9 +178,9 @@ public class StandardChatToolWindowTabbedPane extends JBTabbedPane {
         public void show(Component invoker, int x, int y) {
             selectedPopupTabIndex = StandardChatToolWindowTabbedPane.this.getUI()
                     .tabForCoordinate(StandardChatToolWindowTabbedPane.this, x, y);
-            if (selectedPopupTabIndex > 0) {
+//            if (selectedPopupTabIndex > 0) {
                 super.show(invoker, x, y);
-            }
+//            }
         }
 
         private JBMenuItem createPopupMenuItem(String label, ActionListener listener) {

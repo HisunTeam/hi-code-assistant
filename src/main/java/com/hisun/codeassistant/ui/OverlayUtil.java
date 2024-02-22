@@ -82,8 +82,8 @@ public class OverlayUtil {
             Point locationOnScreen) {
         showWarningBalloon(
                 EditorUtil.getSelectedEditor(project) == null
-                        ? "Unable to locate a selected editor"
-                        : "Please select a target code before proceeding",
+                        ? HiCodeAssistantBundle.get("ui.overlay.warn1")
+                        : HiCodeAssistantBundle.get("ui.overlay.warn2"),
                 locationOnScreen);
     }
 
