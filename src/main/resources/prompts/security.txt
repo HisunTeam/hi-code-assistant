@@ -1,2 +1,2 @@
-Find potential security-related issues, including but not limited to security vulnerabilities, defects, or design flaws with the following code and suggest improvements which can be made to improve security
+使用以下代码查找潜在的安全相关问题，包括但不限于安全漏洞、缺陷或设计缺陷，并提出改进建议以提高安全性
 {{selectedCode}}

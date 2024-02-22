@@ -1,2 +1,2 @@
-Please help to generate JUnit test cases for the following code, be aware that if the code is untestable, please state it and give suggestions instead.
+请帮助为以下代码生成JUnit测试用例，请注意，如果代码不稳定，请说明并给出建议。
 {{selectedCode}}

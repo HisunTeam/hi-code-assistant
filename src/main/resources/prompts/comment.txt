@@ -1,2 +1,2 @@
-Please generate code comments for the following code, return code with comments.
+请为以下代码生成代码注释，返回带有注释的代码。
 {{selectedCode}}

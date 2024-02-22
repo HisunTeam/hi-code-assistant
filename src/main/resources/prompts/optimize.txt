@@ -1,2 +1,2 @@
-Analyze the following code for optimization potential, then improve and optimize the code accordingly
+分析以下代码的优化潜力，然后相应地改进和优化代码
 {{selectedCode}}

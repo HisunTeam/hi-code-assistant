@@ -1,2 +1,2 @@
-Find potential performance bottlenecks with the following code and suggest improvements which can be made to improve performance
+使用以下代码查找潜在的性能瓶颈，并提出改进建议以提高性能
 {{selectedCode}}

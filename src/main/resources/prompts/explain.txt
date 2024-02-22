@@ -1,2 +1,2 @@
-Please explain the following code in detail, line by line. and summarize the following.
+请逐行详细解释以下代码，并做总结
 {{selectedCode}}

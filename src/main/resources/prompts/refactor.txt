@@ -1,7 +1,10 @@
-Please do a Code Refactoring on the following Code. Perform the following checks at least:
- - Evaluate if the names are clear and concise or if renaming is appropriate. check for: variable names, property names, method names, function names, class names, namespaces, file names
+请对以下代码进行代码重构。至少执行以下检查：
 
- - Look at the following function and refactor it into smaller logical functions to improve code maintainability. Also suggest if new/additional classes are required. Reply with suggested edited code. Keep your efforts to a minimum to avoid fractionizing the code too much. resulting functions should have ~4-30 Lines of code. If the function is already fairly simple and only serves one purpose, don't refactor it. Do not provide a refactored code sample in this case.
+ - 评估名称是否清晰简洁，或者重命名是否合适。检查：变量名、属性名、方法名、函数名、类名、命名空间、文件名
 
-This is the current code:
+ - 查看以下函数，并将其重构为更小的逻辑函数，以提高代码的可维护性。还建议是否需要新的/额外的课程。使用建议的编辑代码进行回复。尽量减少您的工作量，避免过多地分解代码。生成的函数应该有大约4-30行代码。如果函数已经相当简单，并且只用于一个目的，那么就不要重构它。在这种情况下，不要提供重构的代码示例。
+
+ - 如果您没有找到优化，请回复“没有找到可优化项”
+
+这是当前代码：
 {{selectedCode}}
