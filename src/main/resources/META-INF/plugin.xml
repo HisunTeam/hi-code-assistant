@@ -68,8 +68,8 @@
         <group id="HiCodeAssistant.statusBarPopup">
             <reference id="HiCodeAssistant.openSettings" />
             <separator/>
-            <reference id="HiCodeAssistant.enableCompletions" />
             <reference id="HiCodeAssistant.disableCompletions" />
+            <reference id="HiCodeAssistant.enableCompletions" />
         </group>
     </actions>
 </idea-plugin>
