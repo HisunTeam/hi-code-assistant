@@ -2,10 +2,10 @@ package com.hisun.codeassistant.conversations;
 
 import com.hisun.codeassistant.completions.CallParameters;
 import com.hisun.codeassistant.conversations.message.Message;
+import com.hisun.codeassistant.settings.GeneralSettings;
 import com.hisun.codeassistant.settings.service.ServiceType;
-import com.hisun.codeassistant.settings.state.OpenAISettingsState;
-import com.hisun.codeassistant.settings.state.SelfHostedLanguageModelSettingsState;
-import com.hisun.codeassistant.settings.state.SettingsState;
+import com.hisun.codeassistant.settings.service.openai.OpenAISettings;
+import com.hisun.codeassistant.settings.service.self.SelfHostedLanguageModelSettings;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.Service;
 import org.jetbrains.annotations.NotNull;
@@ -36,7 +36,7 @@ public final class ConversationService {
     }
 
     public Conversation createConversation(String clientCode) {
-        var settings = SettingsState.getInstance();
+        var settings = GeneralSettings.getCurrentState();
         var conversation = new Conversation();
         conversation.setId(UUID.randomUUID());
         conversation.setClientCode(clientCode);
@@ -105,7 +105,7 @@ public final class ConversationService {
     }
 
     public Conversation startConversation() {
-        var completionCode = SettingsState.getInstance().getSelectedService().getCompletionCode();
+        var completionCode = GeneralSettings.getCurrentState().getSelectedService().getCompletionCode();
         var conversation = createConversation(completionCode);
         conversationState.setCurrentConversation(conversation);
         addConversation(conversation);
@@ -113,7 +113,7 @@ public final class ConversationService {
     }
 
     public void updateConversation(Conversation conversation) {
-        var selectedService = SettingsState.getInstance().getSelectedService();
+        var selectedService = GeneralSettings.getCurrentState().getSelectedService();
         conversation.setClientCode(selectedService.getCompletionCode());
         conversation.setUpdatedOn(LocalDateTime.now());
         conversation.setModel(getModelForSelectedService(selectedService));
@@ -189,8 +189,8 @@ public final class ConversationService {
 
     private static String getModelForSelectedService(ServiceType serviceType) {
         return switch (serviceType) {
-            case OPENAI -> OpenAISettingsState.getInstance().getModel();
-            case SELF_HOSTED -> SelfHostedLanguageModelSettingsState.getInstance().getModel();
+            case OPENAI -> OpenAISettings.getCurrentState().getModel();
+            case SELF_HOSTED -> SelfHostedLanguageModelSettings.getCurrentState().getModel();
         };
     }
 }

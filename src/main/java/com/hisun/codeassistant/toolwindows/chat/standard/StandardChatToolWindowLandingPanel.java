@@ -2,7 +2,7 @@ package com.hisun.codeassistant.toolwindows.chat.standard;
 
 import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.actions.editor.EditorActionEnum;
-import com.hisun.codeassistant.settings.state.SettingsState;
+import com.hisun.codeassistant.settings.GeneralSettings;
 import com.hisun.codeassistant.toolwindows.chat.ui.ResponsePanel;
 import com.hisun.codeassistant.ui.UIUtil;
 import com.intellij.ui.components.ActionLink;
@@ -28,7 +28,7 @@ public class StandardChatToolWindowLandingPanel extends ResponsePanel {
         var panel = new JPanel(new BorderLayout());
         panel.add(UIUtil.createTextPane(
                 "<html>"
-                        + format(HiCodeAssistantBundle.get("toolwindow.chat.standard.welcome"), SettingsState.getInstance().getDisplayName())
+                        + format(HiCodeAssistantBundle.get("toolwindow.chat.standard.welcome"), GeneralSettings.getCurrentState().getDisplayName())
                         + HiCodeAssistantBundle.get("toolwindow.chat.standard.tips")
                         + "</html>",
                 false), BorderLayout.NORTH);

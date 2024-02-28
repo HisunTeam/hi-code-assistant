@@ -9,8 +9,8 @@ import com.hisun.codeassistant.completions.ConversationType;
 import com.hisun.codeassistant.conversations.Conversation;
 import com.hisun.codeassistant.conversations.ConversationService;
 import com.hisun.codeassistant.conversations.message.Message;
+import com.hisun.codeassistant.settings.GeneralSettings;
 import com.hisun.codeassistant.settings.service.ServiceType;
-import com.hisun.codeassistant.settings.state.SettingsState;
 import com.hisun.codeassistant.toolwindows.chat.standard.StandardChatToolWindowContentManager;
 import com.hisun.codeassistant.toolwindows.chat.ui.ChatMessageResponseBody;
 import com.hisun.codeassistant.toolwindows.chat.ui.ChatToolWindowScrollablePanel;
@@ -261,7 +261,7 @@ public abstract class ChatToolWindowTabPanel implements Disposable {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridy = 1;
         rootPanel.add(
-                createUserPromptPanel(SettingsState.getInstance().getSelectedService()), gbc);
+                createUserPromptPanel(GeneralSettings.getCurrentState().getSelectedService()), gbc);
         return rootPanel;
     }
 }

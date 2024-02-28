@@ -8,9 +8,8 @@ import com.hisun.codeassistant.conversations.ConversationService;
 import com.hisun.codeassistant.conversations.message.Message;
 import com.hisun.codeassistant.llms.client.openai.api.OpenAiError;
 import com.hisun.codeassistant.llms.completion.SerpResult;
+import com.hisun.codeassistant.settings.GeneralSettings;
 import com.hisun.codeassistant.settings.service.ServiceType;
-import com.hisun.codeassistant.settings.state.OpenAISettingsState;
-import com.hisun.codeassistant.settings.state.SettingsState;
 import com.hisun.codeassistant.toolwindows.chat.ui.ChatMessageResponseBody;
 import com.hisun.codeassistant.toolwindows.chat.ui.ResponsePanel;
 import com.hisun.codeassistant.toolwindows.chat.ui.textarea.TotalTokensPanel;
@@ -82,9 +81,6 @@ abstract class ToolWindowCompletionResponseEventListener implements CompletionRe
         SwingUtilities.invokeLater(() -> {
             try {
                 if ("insufficient_quota".equals(error.getCode())) {
-                    if (SettingsState.getInstance().getSelectedService() == ServiceType.OPENAI) {
-                        OpenAISettingsState.getInstance().setOpenAIQuotaExceeded(true);
-                    }
                     responseContainer.displayQuotaExceeded();
                 } else {
                     responseContainer.displayError(error.getMessage());

@@ -4,7 +4,6 @@ import com.hisun.codeassistant.llms.client.openai.api.OpenAiError;
 import com.hisun.codeassistant.llms.completion.CompletionEventListener;
 import com.hisun.codeassistant.llms.completion.SerpCompletionEventListener;
 import com.hisun.codeassistant.llms.completion.SerpResult;
-import com.hisun.codeassistant.settings.state.SettingsState;
 import com.intellij.openapi.diagnostic.Logger;
 import okhttp3.sse.EventSource;
 
@@ -92,7 +91,7 @@ public class CompletionRequestHandler {
             }
 
             @Override
-            public void onMessage(String message) {
+            public void onMessage(String message, EventSource eventSource) {
                 publish(message);
             }
 

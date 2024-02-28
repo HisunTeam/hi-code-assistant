@@ -3,7 +3,7 @@ package com.hisun.codeassistant.toolwindows.chat.standard;
 import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.conversations.ConversationService;
 import com.hisun.codeassistant.conversations.ConversationsState;
-import com.hisun.codeassistant.settings.state.SettingsState;
+import com.hisun.codeassistant.settings.GeneralSettings;
 import com.intellij.icons.AllIcons;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.project.Project;
@@ -102,7 +102,7 @@ public class StandardChatToolWindowTabbedPane extends JBTabbedPane {
             var conversation = toolWindowPanel.getConversation();
             if (conversation != null) {
                 ConversationsState.getInstance().setCurrentConversation(conversation);
-                SettingsState.getInstance().sync(conversation);
+                GeneralSettings.getInstance().sync(conversation);
             }
         }
     }

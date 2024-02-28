@@ -2,12 +2,12 @@ package com.hisun.codeassistant.toolwindows.chat.ui;
 
 import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.llms.completion.SerpResult;
-import com.hisun.codeassistant.settings.SettingsConfigurable;
+import com.hisun.codeassistant.settings.GeneralSettingsConfigurable;
 import com.hisun.codeassistant.toolwindows.chat.StreamParser;
 import com.hisun.codeassistant.toolwindows.chat.editor.ResponseEditorPanel;
+import com.hisun.codeassistant.ui.UIUtil;
 import com.hisun.codeassistant.utils.EditorUtil;
 import com.hisun.codeassistant.utils.MarkdownUtil;
-import com.hisun.codeassistant.ui.UIUtil;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.options.ShowSettingsUtil;
@@ -90,7 +90,7 @@ public class ChatMessageResponseBody extends JPanel {
                 format("<html><p style=\"margin-top: 4px; margin-bottom: 8px;\">%s</p></html>", message));
         currentlyProcessedTextPane.addHyperlinkListener(e -> {
             if (e.getEventType() == ACTIVATED) {
-                ShowSettingsUtil.getInstance().showSettingsDialog(project, SettingsConfigurable.class);
+                ShowSettingsUtil.getInstance().showSettingsDialog(project, GeneralSettingsConfigurable.class);
             }
         });
         currentlyProcessedTextPane.getCaret().setVisible(false);
@@ -103,7 +103,7 @@ public class ChatMessageResponseBody extends JPanel {
 
         currentlyProcessedTextPane.addHyperlinkListener(e -> {
             if (e.getEventType() == ACTIVATED) {
-                ShowSettingsUtil.getInstance().showSettingsDialog(project, SettingsConfigurable.class);
+                ShowSettingsUtil.getInstance().showSettingsDialog(project, GeneralSettingsConfigurable.class);
             }
         });
         hideCaret();

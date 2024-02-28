@@ -1,6 +1,7 @@
 package com.hisun.codeassistant.toolwindows.chat.ui.textarea;
 
 import com.hisun.codeassistant.EncodingManager;
+import com.hisun.codeassistant.settings.configuration.ConfigurationSettings;
 import com.hisun.codeassistant.settings.configuration.ConfigurationState;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,7 @@ public class TotalTokensDetails {
 
     public TotalTokensDetails(EncodingManager encodingManager) {
         systemPromptTokens = encodingManager.countTokens(
-                ConfigurationState.getInstance().getSystemPrompt());
+                ConfigurationSettings.getCurrentState().getSystemPrompt());
     }
 
     public int getTotal() {

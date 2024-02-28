@@ -3,7 +3,7 @@ package com.hisun.codeassistant.toolwindows.conversations;
 import com.hisun.codeassistant.actions.toolwindow.DeleteConversationAction;
 import com.hisun.codeassistant.conversations.Conversation;
 import com.hisun.codeassistant.conversations.ConversationsState;
-import com.hisun.codeassistant.settings.state.SettingsState;
+import com.hisun.codeassistant.settings.GeneralSettings;
 import com.hisun.codeassistant.toolwindows.chat.standard.StandardChatToolWindowContentManager;
 import com.hisun.codeassistant.ui.IconActionButton;
 import com.hisun.codeassistant.ui.ModelIconLabel;
@@ -38,7 +38,7 @@ public class ConversationPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                SettingsState.getInstance().sync(conversation);
+                GeneralSettings.getInstance().sync(conversation);
                 toolWindowContentManager.displayConversation(conversation);
             }
         });

@@ -4,6 +4,7 @@ import com.hisun.codeassistant.toolwindows.chat.ui.SmartScroller;
 import com.intellij.ide.BrowserUtil;
 import com.intellij.openapi.roots.ui.componentsList.components.ScrollablePanel;
 import com.intellij.ui.ScrollPaneFactory;
+import com.intellij.util.ui.JBUI;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
@@ -62,5 +63,10 @@ public class UIUtil {
         button.setContentAreaFilled(false);
         button.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
         return button;
+    }
+
+    public static <T extends JComponent> T withEmptyLeftBorder(T component) {
+        component.setBorder(JBUI.Borders.emptyLeft(16));
+        return component;
     }
 }

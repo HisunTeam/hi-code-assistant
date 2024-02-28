@@ -9,9 +9,11 @@ import com.hisun.codeassistant.llms.client.DeserializationUtil;
 import com.hisun.codeassistant.llms.client.openai.api.ChatCompletionRequest;
 import com.hisun.codeassistant.llms.client.openai.api.ChatCompletionResult;
 import com.hisun.codeassistant.llms.client.openai.api.ChatFunctionCall;
+import com.hisun.codeassistant.llms.client.openai.api.CompletionRequest;
 import com.hisun.codeassistant.llms.client.openai.api.service.ChatCompletionRequestMixIn;
 import com.hisun.codeassistant.llms.client.openai.api.service.ChatFunctionCallMixIn;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionEventSourceListener;
+import com.hisun.codeassistant.llms.client.openai.completion.OpenAITextCompletionEventSourceListener;
 import com.hisun.codeassistant.llms.completion.CompletionEventListener;
 import lombok.Builder;
 import okhttp3.*;
@@ -59,6 +61,14 @@ public class SelfClient {
         }
     }
 
+    public EventSource getCompletionAsync(
+            CompletionRequest request,
+            CompletionEventListener eventListener) {
+        return EventSources.createFactory(httpClient).newEventSource(
+                buildTextCompletionRequest(request),
+                new OpenAITextCompletionEventSourceListener(eventListener));
+    }
+
     protected Request buildCompletionRequest(ChatCompletionRequest completionRequest) {
         var headers = new HashMap<>(getRequiredHeaders());
         if (Boolean.TRUE.equals(completionRequest.getStream())) {
@@ -79,5 +89,23 @@ public class SelfClient {
 
     private Map<String, String> getRequiredHeaders() {
         return new HashMap<>(Map.of("X-LLM-Application-Tag", "hi-code-assistant"));
+    }
+
+    private Request buildTextCompletionRequest(CompletionRequest request) {
+        var headers = new HashMap<>(getRequiredHeaders());
+        if (Boolean.TRUE.equals(request.getStream())) {
+            headers.put("Accept", "text/event-stream");
+        }
+        try {
+            return new Request.Builder()
+                    .url(host + "/v1/completions")
+                    .headers(Headers.of(headers))
+                    .post(RequestBody.create(
+                            new ObjectMapper().writeValueAsString(request),
+                            MediaType.parse("application/json")))
+                    .build();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Unable to process request", e);
+        }
     }
 }

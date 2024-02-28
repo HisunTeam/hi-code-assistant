@@ -2,7 +2,7 @@ package com.hisun.codeassistant.toolwindows.chat.ui;
 
 import com.hisun.codeassistant.HiCodeAssistantIcons;
 import com.hisun.codeassistant.conversations.message.Message;
-import com.hisun.codeassistant.settings.state.SettingsState;
+import com.hisun.codeassistant.settings.GeneralSettings;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.ColorUtil;
@@ -47,7 +47,7 @@ public class UserMessagePanel extends JPanel {
 
     private JBLabel createDisplayNameLabel() {
         return new JBLabel(
-                SettingsState.getInstance().getDisplayName(),
+                GeneralSettings.getCurrentState().getDisplayName(),
                 HiCodeAssistantIcons.USER_ICON,
                 SwingConstants.LEADING)
                 .setAllowAutoWrapping(true)

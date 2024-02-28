@@ -27,7 +27,7 @@ dependencies {
 //    implementation(libs.annotations)
     implementation(libs.bundles.jacksonDatatype)
     implementation(libs.bundles.okHttp)
-    implementation("com.knuddels:jtokkit:0.6.1")
+    implementation("com.knuddels:jtokkit:1.0.0")
     implementation("org.apache.commons:commons-text:1.11.0")
 }
 

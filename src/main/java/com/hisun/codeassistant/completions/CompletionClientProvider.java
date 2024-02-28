@@ -3,26 +3,20 @@ package com.hisun.codeassistant.completions;
 import com.hisun.codeassistant.credentials.OpenAICredentialsManager;
 import com.hisun.codeassistant.llms.client.openai.OpenAIClient;
 import com.hisun.codeassistant.llms.client.self.SelfClient;
-import com.hisun.codeassistant.settings.state.OpenAISettingsState;
-import com.hisun.codeassistant.settings.state.SelfHostedLanguageModelSettingsState;
+import com.hisun.codeassistant.settings.service.openai.OpenAISettings;
+import com.hisun.codeassistant.settings.service.self.SelfHostedLanguageModelSettings;
 
 public class CompletionClientProvider {
     public static OpenAIClient getOpenAIClient() {
-        var settings = OpenAISettingsState.getInstance();
-        var builder = OpenAIClient.builder()
+        return OpenAIClient.builder()
                 .apiKey(OpenAICredentialsManager.getInstance().getApiKey())
-                .organization(settings.getOrganization());
-        var baseHost = settings.getBaseHost();
-        if (baseHost != null) {
-            builder.host(baseHost);
-        }
-        return builder.build();
+                .organization(OpenAISettings.getCurrentState().getOrganization())
+                .build();
     }
 
     public static SelfClient getSelfHostedLanguageModelClient() {
-        var settings = SelfHostedLanguageModelSettingsState.getInstance();
+        var baseHost =  SelfHostedLanguageModelSettings.getCurrentState().getBaseHost();
         var builder = SelfClient.builder();
-        var baseHost = settings.getBaseHost();
         // FIXME required
         if (baseHost != null) {
             builder.host(baseHost);

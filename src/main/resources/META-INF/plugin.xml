@@ -10,18 +10,26 @@
         <postStartupActivity implementation="com.hisun.codeassistant.HiCodeAssistantStartupActivity"/>
 
         <applicationConfigurable id="settings.hicodeassistant" parentId="tools" displayName="Hisun Code Assistant"
-                                 instance="com.hisun.codeassistant.settings.SettingsConfigurable"/>
+                                 instance="com.hisun.codeassistant.settings.GeneralSettingsConfigurable"/>
 
-        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.SettingsState"/>
-        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.OpenAISettingsState"/>
-        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.SelfHostedLanguageModelSettingsState"/>
-        <applicationService serviceImplementation="com.hisun.codeassistant.settings.state.IncludedFilesSettingsState"/>
-        <applicationService serviceImplementation="com.hisun.codeassistant.settings.configuration.ConfigurationState"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.GeneralSettings"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.service.openai.OpenAISettings"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.service.self.SelfHostedLanguageModelSettings"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.IncludedFilesSettings"/>
+        <applicationService serviceImplementation="com.hisun.codeassistant.settings.configuration.ConfigurationSettings"/>
         <applicationService serviceImplementation="com.hisun.codeassistant.conversations.ConversationsState"/>
+
+        <editorFactoryListener implementation="com.hisun.codeassistant.codecompletions.HiCodeAssistantEditorListener"/>
 
         <toolWindow id="HiCodeAssistant" icon="com.hisun.codeassistant.HiCodeAssistantIcons.SYSTEM_ICON" anchor="right"
                     doNotActivateOnStart="true" factoryClass="com.hisun.codeassistant.toolwindows.ProjectToolWindowFactory"/>
+
+        <typedHandler order="first, before completionAutoPopup" implementation="com.hisun.codeassistant.codecompletions.TypeOverHandler"/>
+
         <notificationGroup id="HiCodeAssistant Notification Group" displayType="BALLOON" key="notification.group.name"/>
+
+        <statusBarWidgetFactory order="first" id="com.hisun.codeassistant.statusbar.widget"
+                                implementation="com.hisun.codeassistant.widget.HiCodeAssistantStatusBarWidgetFactory"/>
 
     </extensions>
 
@@ -33,6 +41,35 @@
                popup="true"
                icon="com.hisun.codeassistant.HiCodeAssistantIcons.SYSTEM_ICON">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </group>
+
+        <action
+                id="HiCodeAssistant.openSettings"
+                text="设置"
+                class="com.hisun.codeassistant.actions.OpenSettingsAction">
+            <override-text place="MainMenu" text="设置"/>
+            <override-text place="popup" use-text-of-place="MainMenu"/>
+        </action>
+        <action
+                id="HiCodeAssistant.enableCompletions"
+                text="开启补全"
+                class="com.hisun.codeassistant.actions.EnableCompletionsAction">
+            <override-text place="MainMenu" text="开启补全"/>
+            <override-text place="popup" use-text-of-place="MainMenu"/>
+        </action>
+        <action
+                id="HiCodeAssistant.disableCompletions"
+                text="禁用补全"
+                class="com.hisun.codeassistant.actions.DisableCompletionsAction">
+            <override-text place="MainMenu" text="禁用补全"/>
+            <override-text place="popup" use-text-of-place="MainMenu"/>
+        </action>
+
+        <group id="HiCodeAssistant.statusBarPopup">
+            <reference id="HiCodeAssistant.openSettings" />
+            <separator/>
+            <reference id="HiCodeAssistant.enableCompletions" />
+            <reference id="HiCodeAssistant.disableCompletions" />
         </group>
     </actions>
 </idea-plugin>

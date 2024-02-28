@@ -9,8 +9,8 @@ import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
 import com.hisun.codeassistant.llms.client.openai.api.ChatCompletionRequest;
 import com.hisun.codeassistant.llms.client.openai.api.ChatMessage;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
-import com.hisun.codeassistant.settings.configuration.ConfigurationState;
-import com.hisun.codeassistant.settings.state.IncludedFilesSettingsState;
+import com.hisun.codeassistant.settings.IncludedFilesSettings;
+import com.hisun.codeassistant.settings.configuration.ConfigurationSettings;
 import com.intellij.openapi.diagnostic.Logger;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,7 +37,7 @@ public class CompletionRequestProvider {
 
     public static String getPromptWithContext(List<ReferencedFile> referencedFiles,
                                               String userPrompt) {
-        var includedFilesSettings = IncludedFilesSettingsState.getInstance();
+        var includedFilesSettings = IncludedFilesSettings.getCurrentState();
         var repeatableContext = referencedFiles.stream()
                 .map(item -> includedFilesSettings.getRepeatableContext()
                         .replace("{FILE_PATH}", item.getFilePath())
@@ -55,11 +55,12 @@ public class CompletionRequestProvider {
     public ChatCompletionRequest buildOpenAIChatCompletionRequest(
             @Nullable String model,
             CallParameters callParameters) {
+        var configuration = ConfigurationSettings.getCurrentState();
         return ChatCompletionRequest.builder()
                 .messages(buildMessages(model, callParameters))
                 .model(model)
-                .maxTokens(ConfigurationState.getInstance().getMaxTokens())
-                .temperature(ConfigurationState.getInstance().getTemperature())
+                .maxTokens(configuration.getMaxTokens())
+                .temperature(configuration.getTemperature())
                 .stream(Boolean.TRUE)
                 .build();
     }
@@ -68,11 +69,12 @@ public class CompletionRequestProvider {
             @Nullable String model,
             CallParameters callParameters) {
         String modelCode = SelfModelEnum.fromName(model).getCode();
+        var configuration = ConfigurationSettings.getCurrentState();
         return ChatCompletionRequest.builder()
                 .messages(buildSelfMessages(modelCode, callParameters))
                 .model(modelCode)
-                .maxTokens(ConfigurationState.getInstance().getMaxTokens())
-                .temperature(ConfigurationState.getInstance().getTemperature())
+                .maxTokens(configuration.getMaxTokens())
+                .temperature(configuration.getTemperature())
                 .stream(Boolean.TRUE)
                 .build();
     }
@@ -82,7 +84,7 @@ public class CompletionRequestProvider {
         var messages = new ArrayList<ChatMessage>();
 
         if (callParameters.getConversationType() == ConversationType.DEFAULT) {
-            messages.add(new ChatMessage(ChatMessageRole.SYSTEM.value(), ConfigurationState.getInstance().getSystemPrompt()));
+            messages.add(new ChatMessage(ChatMessageRole.SYSTEM.value(), ConfigurationSettings.getCurrentState().getSystemPrompt()));
         }
 
         for (var prevMessage : conversation.getMessages()) {
@@ -103,7 +105,7 @@ public class CompletionRequestProvider {
 
         int totalUsage = messages.parallelStream()
                 .mapToInt(encodingManager::countMessageTokens)
-                .sum() + ConfigurationState.getInstance().getMaxTokens();
+                .sum() + ConfigurationSettings.getCurrentState().getMaxTokens();
 
         int modelMaxTokens;
         try {
@@ -125,7 +127,7 @@ public class CompletionRequestProvider {
 
         int totalUsage = messages.parallelStream()
                 .mapToInt(encodingManager::countMessageTokens)
-                .sum() + ConfigurationState.getInstance().getMaxTokens();
+                .sum() + ConfigurationSettings.getCurrentState().getMaxTokens();
 
         int modelMaxTokens;
         try {

@@ -25,10 +25,10 @@ import java.util.function.Consumer;
 
 import static java.lang.String.format;
 
-public abstract class CompletionEventSourceListener extends EventSourceListener {
+public abstract class CompletionEventSourceListener<T> extends EventSourceListener {
     private static final Logger LOG = LoggerFactory.getLogger(CompletionEventSourceListener.class);
 
-    private final CompletionEventListener listeners;
+    private final CompletionEventListener<T> listeners;
     private final StringBuilder messageBuilder = new StringBuilder();
     private final boolean retryOnReadTimeout;
     private final Consumer<String> onRetry;
@@ -55,7 +55,7 @@ public abstract class CompletionEventSourceListener extends EventSourceListener 
         this.onRetry = onRetry;
     }
 
-    protected abstract String getMessage(String data) throws JsonProcessingException;
+    protected abstract T getMessage(String data) throws JsonProcessingException;
 
     protected abstract OpenAiError.OpenAiErrorDetails getErrorDetails(String data) throws JsonProcessingException;
 
@@ -82,7 +82,7 @@ public abstract class CompletionEventSourceListener extends EventSourceListener 
             var message = getMessage(data);
             if (message != null) {
                 messageBuilder.append(message);
-                listeners.onMessage(message);
+                listeners.onMessage(message, eventSource);
             }
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Unable to deserialize payload.", e);

@@ -1,5 +1,6 @@
 package com.hisun.codeassistant.utils;
 
+import com.hisun.codeassistant.settings.configuration.ConfigurationSettings;
 import com.hisun.codeassistant.settings.configuration.ConfigurationState;
 import com.intellij.codeInsight.daemon.DaemonCodeAnalyzer;
 import com.intellij.openapi.application.ApplicationManager;
@@ -10,7 +11,10 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.editor.EditorKind;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
+import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.openapi.fileEditor.TextEditor;
+import com.intellij.openapi.fileEditor.impl.FileEditorManagerImpl;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.codeStyle.CodeStyleManager;
@@ -53,6 +57,23 @@ public class EditorUtil {
         return editor != null && editor.getSelectionModel().hasSelection();
     }
 
+    public static boolean isSelectedEditor(Editor editor) {
+        Project project = editor.getProject();
+        if (project != null && !project.isDisposed()) {
+            FileEditorManager editorManager = FileEditorManager.getInstance(project);
+            if (editorManager == null) {
+                return false;
+            }
+            if (editorManager instanceof FileEditorManagerImpl) {
+                Editor current = ((FileEditorManagerImpl) editorManager).getSelectedTextEditor(true);
+                return current != null && current.equals(editor);
+            }
+            FileEditor current = editorManager.getSelectedEditor();
+            return current instanceof TextEditor && editor.equals(((TextEditor) current).getEditor());
+        }
+        return false;
+    }
+
     public static void replaceMainEditorSelection(@NotNull Project project, @NotNull String text) {
         var application = ApplicationManager.getApplication();
         application.invokeLater(() ->
@@ -66,7 +87,7 @@ public class EditorUtil {
 
                         document.replaceString(startOffset, endOffset, text);
 
-                        if (ConfigurationState.getInstance().isAutoFormattingEnabled()) {
+                        if (ConfigurationSettings.getCurrentState().isAutoFormattingEnabled()) {
                             reformatDocument(project, document, startOffset, endOffset);
                         }
 
@@ -88,7 +109,7 @@ public class EditorUtil {
         return null;
     }
 
-    private static void reformatDocument(
+    public static void reformatDocument(
             @NotNull Project project,
             @NotNull Document document,
             int startOffset,
@@ -101,6 +122,7 @@ public class EditorUtil {
                     .reformatText(psiFile, startOffset, endOffset);
         }
     }
+
     public static void disableHighlighting(@NotNull Project project, Document document) {
         var psiFile = PsiDocumentManager.getInstance(project).getPsiFile(document);
         if (psiFile != null) {

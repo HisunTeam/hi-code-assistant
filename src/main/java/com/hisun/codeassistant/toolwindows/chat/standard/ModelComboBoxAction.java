@@ -5,10 +5,13 @@ import com.hisun.codeassistant.conversations.ConversationService;
 import com.hisun.codeassistant.conversations.ConversationsState;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
 import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
+import com.hisun.codeassistant.settings.GeneralSettings;
+import com.hisun.codeassistant.settings.GeneralSettingsState;
 import com.hisun.codeassistant.settings.service.ServiceType;
-import com.hisun.codeassistant.settings.state.OpenAISettingsState;
-import com.hisun.codeassistant.settings.state.SelfHostedLanguageModelSettingsState;
-import com.hisun.codeassistant.settings.state.SettingsState;
+import com.hisun.codeassistant.settings.service.openai.OpenAISettings;
+import com.hisun.codeassistant.settings.service.openai.OpenAISettingsState;
+import com.hisun.codeassistant.settings.service.self.SelfHostedLanguageModelSettings;
+import com.hisun.codeassistant.settings.service.self.SelfHostedLanguageModelSettingsState;
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.actionSystem.ex.ComboBoxAction;
 import org.jetbrains.annotations.NotNull;
@@ -19,15 +22,16 @@ import java.util.Objects;
 
 public class ModelComboBoxAction extends ComboBoxAction {
     private final Runnable onAddNewTab;
-    private final SettingsState settings;
+
+    private final GeneralSettingsState settings;
     private final OpenAISettingsState openAISettings;
     private final SelfHostedLanguageModelSettingsState selfHostedLanguageModelSettings;
 
     public ModelComboBoxAction(Runnable onAddNewTab, ServiceType selectedService) {
         this.onAddNewTab = onAddNewTab;
-        settings = SettingsState.getInstance();
-        openAISettings = OpenAISettingsState.getInstance();
-        selfHostedLanguageModelSettings = SelfHostedLanguageModelSettingsState.getInstance();
+        settings = GeneralSettings.getCurrentState();
+        openAISettings = OpenAISettings.getCurrentState();
+        selfHostedLanguageModelSettings = SelfHostedLanguageModelSettings.getCurrentState();
         updateTemplatePresentation(selectedService);
     }
 
