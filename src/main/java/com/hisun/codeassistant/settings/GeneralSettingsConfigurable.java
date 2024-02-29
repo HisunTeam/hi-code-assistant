@@ -38,7 +38,7 @@ public class GeneralSettingsConfigurable implements Configurable {
     public JComponent createComponent() {
         var settings = GeneralSettings.getInstance();
         parentDisposable = Disposer.newDisposable();
-        component = new GeneralSettingsComponent(parentDisposable, settings);
+        component = new GeneralSettingsComponent(settings);
         return component.getPanel();
     }
 

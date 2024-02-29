@@ -44,9 +44,9 @@ public final class CompletionRequestService {
         var requestProvider = new CodeCompletionRequestProvider(requestDetails);
         return switch (GeneralSettings.getCurrentState().getSelectedService()) {
             case OPENAI -> CompletionClientProvider.getOpenAIClient()
-                    .getCompletionAsync(requestProvider.buildOpenAIRequest(), eventListener);
+                    .getCompletionAsync(requestProvider.buildOpenAIRequest(OpenAISettings.getCurrentState().getCodeCompletionModel()), eventListener);
             case SELF_HOSTED -> CompletionClientProvider.getSelfHostedLanguageModelClient()
-                    .getCompletionAsync(requestProvider.buildSelfRequest(), eventListener);
+                    .getCompletionAsync(requestProvider.buildSelfRequest(SelfHostedLanguageModelSettings.getCurrentState().getCodeCompletionModel()), eventListener);
         };
     }
 

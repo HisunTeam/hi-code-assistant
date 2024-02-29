@@ -41,6 +41,7 @@ public class GeneralSettings implements PersistentStateComponent<GeneralSettings
         }
         if ("self.chat.completion".equals(clientCode)) {
             state.setSelectedService(ServiceType.SELF_HOSTED);
+            SelfHostedLanguageModelSettings.getCurrentState().setModel(conversation.getModel());
         }
     }
 

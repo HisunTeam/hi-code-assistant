@@ -3,10 +3,14 @@ package com.hisun.codeassistant.settings.service.openai;
 import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.credentials.OpenAICredentialManager;
 import com.hisun.codeassistant.llms.client.openai.completion.OpenAIChatCompletionModel;
+import com.hisun.codeassistant.llms.client.self.SelfModelEnum;
+import com.hisun.codeassistant.settings.GeneralSettings;
+import com.hisun.codeassistant.settings.service.CodeCompletionModel;
 import com.hisun.codeassistant.ui.UIUtil;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.ui.EnumComboBoxModel;
 import com.intellij.ui.TitledSeparator;
+import com.intellij.ui.components.JBCheckBox;
 import com.intellij.ui.components.JBPasswordField;
 import com.intellij.ui.components.JBTextField;
 import com.intellij.util.ui.FormBuilder;
@@ -14,12 +18,17 @@ import com.intellij.util.ui.UI;
 
 import javax.swing.*;
 
+import java.util.Arrays;
+
 import static com.hisun.codeassistant.ui.UIUtil.withEmptyLeftBorder;
+import static java.util.stream.Collectors.toList;
 
 public class OpenAISettingsForm {
     private final JBPasswordField apiKeyField;
     private final JBTextField organizationField;
     private final ComboBox<OpenAIChatCompletionModel> completionModelComboBox;
+
+    private final ComboBox<CodeCompletionModel> codeCompletionModelComboBox;
 
     public OpenAISettingsForm(OpenAISettingsState settings) {
         apiKeyField = new JBPasswordField();
@@ -30,6 +39,12 @@ public class OpenAISettingsForm {
                 new EnumComboBoxModel<>(OpenAIChatCompletionModel.class));
         completionModelComboBox.setSelectedItem(
                 OpenAIChatCompletionModel.findByCode(settings.getModel()));
+
+        var codeCompletionComboBoxModel = new DefaultComboBoxModel<CodeCompletionModel>();
+        codeCompletionComboBoxModel.addElement(CodeCompletionModel.OPENAI);
+        codeCompletionModelComboBox = new ComboBox<>(codeCompletionComboBoxModel);
+        codeCompletionModelComboBox.setSelectedItem(CodeCompletionModel.OPENAI);
+        codeCompletionModelComboBox.setEnabled(false);
     }
 
     public JPanel getForm() {
@@ -46,6 +61,9 @@ public class OpenAISettingsForm {
                                 "settingsConfigurable.section.openai.organization.comment")))
                 .add(UI.PanelFactory.panel(completionModelComboBox)
                         .withLabel(HiCodeAssistantBundle.get("settingsConfigurable.shared.model.label"))
+                        .resizeX(false))
+                .add(UI.PanelFactory.panel(codeCompletionModelComboBox)
+                        .withLabel(HiCodeAssistantBundle.get("settingsConfigurable.shared.code.model.label"))
                         .resizeX(false))
                 .createPanel();
 

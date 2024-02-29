@@ -11,8 +11,9 @@ public class CodeCompletionRequestProvider {
         this.details = details;
     }
 
-    public CompletionRequest buildOpenAIRequest() {
+    public CompletionRequest buildOpenAIRequest(String model) {
         return CompletionRequest.builder()
+                .model(model)
                 .prompt(details.getPrefix())
                 .stream(true)
                 .maxTokens(MAX_TOKENS)
@@ -20,8 +21,9 @@ public class CodeCompletionRequestProvider {
                 .build();
     }
 
-    public CompletionRequest buildSelfRequest() {
+    public CompletionRequest buildSelfRequest(String model) {
         return CompletionRequest.builder()
+                .model(model)
                 .prompt(details.getPrefix())
                 .stream(true)
                 .maxTokens(MAX_TOKENS)

@@ -19,8 +19,7 @@ public class CompletionRequest {
      * The name of the model to use.
      * Required if specifying a fine-tuned model or if using the new v1/completions endpoint.
      */
-    @Builder.Default
-    String model = "gpt-3.5-turbo-instruct";
+    String model;
 
     /**
      * An optional prompt to complete from

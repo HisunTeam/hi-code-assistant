@@ -1,10 +1,16 @@
 package com.hisun.codeassistant.settings;
 
 import com.hisun.codeassistant.settings.service.ServiceType;
+import lombok.Data;
+import lombok.Setter;
 
+@Data
 public class GeneralSettingsState {
     private String displayName = "";
+
     private ServiceType selectedService = ServiceType.SELF_HOSTED;
+
+    private boolean codeCompletionsEnabled = true;
 
     public String getDisplayName() {
         if (displayName == null || displayName.isEmpty()) {
@@ -17,15 +23,4 @@ public class GeneralSettingsState {
         return displayName;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public ServiceType getSelectedService() {
-        return selectedService;
-    }
-
-    public void setSelectedService(ServiceType selectedService) {
-        this.selectedService = selectedService;
-    }
 }

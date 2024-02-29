@@ -3,13 +3,14 @@ package com.hisun.codeassistant.settings;
 import com.hisun.codeassistant.HiCodeAssistantBundle;
 import com.hisun.codeassistant.settings.service.ServiceSelectionForm;
 import com.hisun.codeassistant.settings.service.ServiceType;
-import com.intellij.openapi.Disposable;
 import com.intellij.openapi.ui.ComboBox;
+import com.intellij.ui.components.JBCheckBox;
 import com.intellij.ui.components.JBTextField;
 import com.intellij.util.ui.FormBuilder;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
 import java.util.Arrays;
 
 import static com.hisun.codeassistant.settings.service.ServiceType.OPENAI;
@@ -20,9 +21,10 @@ public class GeneralSettingsComponent {
     private final JPanel mainPanel;
     private final JBTextField displayNameField;
     private final ComboBox<ServiceType> serviceComboBox;
+    private final JBCheckBox autoCompletionCheckBox;
     private final ServiceSelectionForm serviceSelectionForm;
 
-    public GeneralSettingsComponent(Disposable parentDisposable, GeneralSettings settings) {
+    public GeneralSettingsComponent(GeneralSettings settings) {
         displayNameField = new JBTextField(settings.getState().getDisplayName(), 20);
         serviceSelectionForm = new ServiceSelectionForm();
         var cardLayout = new DynamicCardLayout();
@@ -34,14 +36,30 @@ public class GeneralSettingsComponent {
         serviceComboBox = new ComboBox<>(serviceComboBoxModel);
         serviceComboBox.setSelectedItem(SELF_HOSTED);
         serviceComboBox.setPreferredSize(displayNameField.getPreferredSize());
-        serviceComboBox.addItemListener(e -> cardLayout.show(cards, ((ServiceType) e.getItem()).getCode()));
+
+
+        autoCompletionCheckBox = new JBCheckBox(
+                HiCodeAssistantBundle.get("configurationConfigurable.autoCompletion.label"),
+                settings.getState().isCodeCompletionsEnabled());
+
+        serviceComboBox.addItemListener(e -> {
+            cardLayout.show(cards, ((ServiceType) e.getItem()).getCode());
+        });
+
+        autoCompletionCheckBox.addItemListener(e -> {
+            boolean isSelected = e.getStateChange() == ItemEvent.SELECTED;
+            GeneralSettings.getCurrentState().setCodeCompletionsEnabled(isSelected);
+        });
+
         mainPanel = FormBuilder.createFormBuilder()
                 .addLabeledComponent(HiCodeAssistantBundle.get("settingsConfigurable.displayName.label"), displayNameField)
                 .addLabeledComponent(HiCodeAssistantBundle.get("settingsConfigurable.service.label"), serviceComboBox)
+                .addComponent(autoCompletionCheckBox)
                 .addComponent(cards)
                 .addComponentFillVertically(new JPanel(), 0)
                 .getPanel();
     }
+
 
     public ServiceType getSelectedService() {
         return serviceComboBox.getItem();
