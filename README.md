@@ -22,7 +22,50 @@ This specific section is a source for the [plugin.xml](/src/main/resources/META-
 
 To keep everything working, do not remove `<!-- ... -->` sections.
 <!-- Plugin description -->
-hi code assistant
+## 介绍 HiCodeAssistant：编码的人工智能副驾驶
+
+HiCodeAssistant是您的人工智能助手，旨在提高您的编码技能并优化您的编程时间。
+
+## 快速入门指南
+
+1. **下载插件**
+
+2. **配置首选服务**
+
+   a) **OpenAI** - 需要 OpenAI API 密钥进行身份验证。建议使用自托管服务中的模型，不需要自带魔法。
+
+   b) **自托管服务** - 在多个不同的提供商之间进行选择，如OpenAI、ChatGLM3等。
+
+3. **开始使用功能**
+
+## 特性
+
+该插件提供了几个关键功能，例如：
+
+### 与AI聊天
+
+你想问什么就问什么。
+
+### 代码审查、解释代码、生成单元测试等功能
+
+使用所选代码执行软件开发过程中的相关任务。
+
+### 选择并询问
+
+询问与所选代码相关的任何问题。
+
+### 替换生成的代码
+
+立即用人工智能生成的建议代码替换编辑器中选定的代码块。
+
+### 重新生成回复
+
+希望得到不同的答案？重新生成您选择的任何响应。
+
+## 其他功能
+
+- **对话历史记录** - 查看最近的会话历史记录并恢复以前的会话，使您可以轻松地从中断的位置恢复会话
+- **并发对话** - 在多个选项卡中同时与AI聊天
 <!-- Plugin description end -->
 
 ## Installation
