@@ -1,8 +1,8 @@
 package com.hisun.codeassistant.codecompletions;
 
-import com.hisun.codeassistant.HiCodeAssistantKeys;
 import com.hisun.codeassistant.actions.CodeCompletionEnabledListener;
 import com.hisun.codeassistant.completions.CompletionRequestService;
+import com.hisun.codeassistant.settings.GeneralSettings;
 import com.hisun.codeassistant.settings.configuration.ConfigurationSettings;
 import com.hisun.codeassistant.utils.EditorUtil;
 import com.intellij.codeInsight.lookup.LookupManager;
@@ -69,7 +69,7 @@ public final class CodeCompletionService implements Disposable {
 
         if (project.isDisposed()
                 || TypeOverHandler.getPendingTypeOverAndReset(editor)
-                || !ConfigurationSettings.getCurrentState().isCodeCompletionsEnabled()
+                || !GeneralSettings.getCurrentState().isCodeCompletionsEnabled()
                 || !EditorUtil.isSelectedEditor(editor)
                 || LookupManager.getActiveLookup(editor) != null
                 || editor.isViewer()

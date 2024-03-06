@@ -1,7 +1,7 @@
 package com.hisun.codeassistant.codecompletions;
 
 import com.hisun.codeassistant.actions.CodeCompletionEnabledListener;
-import com.hisun.codeassistant.settings.configuration.ConfigurationSettings;
+import com.hisun.codeassistant.settings.GeneralSettings;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
@@ -26,7 +26,7 @@ public class CodeCompletionListenerBinder implements Disposable {
     public CodeCompletionListenerBinder(Editor editor) {
         this.editor = editor;
 
-        if (ConfigurationSettings.getCurrentState().isCodeCompletionsEnabled()) {
+        if (GeneralSettings.getCurrentState().isCodeCompletionsEnabled()) {
             addListeners();
         }
 

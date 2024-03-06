@@ -15,6 +15,5 @@ public class ConfigurationState {
     private double temperature = 0.1;
     private boolean autoFormattingEnabled = true;
 
-    private boolean codeCompletionsEnabled;
     private ArrayList<EditorActionEnum> tableData = EditorActionsUtil.DEFAULT_ACTIONS;
 }
