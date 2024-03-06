@@ -22,7 +22,7 @@ This specific section is a source for the [plugin.xml](/src/main/resources/META-
 
 To keep everything working, do not remove `<!-- ... -->` sections.
 <!-- Plugin description -->
-## 介绍 HiCodeAssistant：编码的人工智能副驾驶
+## HiCodeAssistant介绍
 
 HiCodeAssistant是您的人工智能助手，旨在提高您的编码技能并优化您的编程时间。
 
@@ -66,6 +66,7 @@ HiCodeAssistant是您的人工智能助手，旨在提高您的编码技能并�
 
 - **对话历史记录** - 查看最近的会话历史记录并恢复以前的会话，使您可以轻松地从中断的位置恢复会话
 - **并发对话** - 在多个选项卡中同时与AI聊天
+- **清理对话** - 受模型token长度限制，请在必要时及时清理对话
 <!-- Plugin description end -->
 
 ## Installation
