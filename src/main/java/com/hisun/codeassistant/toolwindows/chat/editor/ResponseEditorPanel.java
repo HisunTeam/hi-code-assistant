@@ -92,7 +92,7 @@ public class ResponseEditorPanel extends JPanel implements Disposable {
         settings.setAdditionalLinesCount(0);
         settings.setAdditionalPageAtBottom(false);
         settings.setVirtualSpace(false);
-        settings.setUseSoftWraps(false);
+        settings.setUseSoftWraps(true);
         settings.setLineMarkerAreaShown(false);
         settings.setGutterIconsShown(false);
         settings.setLineNumbersShown(false);
