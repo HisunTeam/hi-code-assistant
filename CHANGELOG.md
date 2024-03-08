@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+## [0.0.9] - 2024-03-08
+
+### Fixed
+
+- 回复面板中markdown文本框内的代码内容支持自动换行
+- ChatGLM3-6B模型聊天使用Chat API、代码补全使用Completions API
+
 ## [0.0.8] - 2024-03-06
 
 ### Fixed
