@@ -1,4 +1,5 @@
-HiCodeAssistant is your artificial intelligence assistant designed to enhance your coding skills and optimize your programming time.
+## HiCodeAssistant
+Your artificial intelligence assistant designed to enhance your coding skills and optimize your programming time.
 
 ## Quick Start Guide
 
