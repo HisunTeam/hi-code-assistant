@@ -1,88 +1,57 @@
-# plugin
+HiCodeAssistant is your artificial intelligence assistant designed to enhance your coding skills and optimize your programming time.
 
-![Build](https://github.com/vauns/plugin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+## Quick Start Guide
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties), [plugin ID](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `PLUGIN_ID` in the above README badges.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
+1. **Download the Plugin**
 
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+2. **Configure Preferred Services**
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+   a) **OpenAI** - Requires an OpenAI API key for authentication. It is recommended to use models in a self-hosted service, no magic needed.
 
-To keep everything working, do not remove `<!-- ... -->` sections.
-<!-- Plugin description -->
-## HiCodeAssistant介绍
+   b) **Self-Hosted Services** - Choose from multiple different providers such as OpenAI, ChatGLM3, etc.
 
-HiCodeAssistant是您的人工智能助手，旨在提高您的编码技能并优化您的编程时间。
+3. **Start Using Features**
 
-## 快速入门指南
+## Features
 
-1. **下载插件**
+The plugin offers several key features, such as:
 
-2. **配置首选服务**
+### Chat with AI
 
-   a) **OpenAI** - 需要 OpenAI API 密钥进行身份验证。建议使用自托管服务中的模型，不需要自带魔法。
+Ask anything you want.
 
-   b) **自托管服务** - 在多个不同的提供商之间进行选择，如OpenAI、ChatGLM3等。
+### Code Review, Explain Code, Generate Unit Tests, and More
 
-3. **开始使用功能**
+Perform relevant tasks in the software development process using the selected code.
 
-## 特性
+### Select and Ask
 
-该插件提供了几个关键功能，例如：
+Ask any question related to the selected code.
 
-### 与AI聊天
+### Replace Generated Code
 
-你想问什么就问什么。
+Instantly replace a selected block of code in the editor with AI-generated suggestion code.
 
-### 代码审查、解释代码、生成单元测试等功能
+### Regenerate Response
 
-使用所选代码执行软件开发过程中的相关任务。
+Want a different answer? Regenerate any response you choose.
 
-### 选择并询问
+### Code Completion
 
-询问与所选代码相关的任何问题。
+Inline, multi-line real-time code completion within the editor
 
-### 替换生成的代码
+## Additional Features
 
-立即用人工智能生成的建议代码替换编辑器中选定的代码块。
-
-### 重新生成回复
-
-希望得到不同的答案？重新生成您选择的任何响应。
-
-### 代码补全
-
-编辑器内行内、多行实时代码补全
-
-## 其他功能
-
-- **对话历史记录** - 查看最近的会话历史记录并恢复以前的会话，使您可以轻松地从中断的位置恢复会话
-- **并发对话** - 在多个选项卡中同时与AI聊天
-- **清理对话** - 受模型token长度限制，请在必要时及时清理对话
+- **Conversation History** - View recent conversation history and resume previous conversations, allowing you to easily pick up where you left off.
+- **Concurrent Conversations** - Chat with AI in multiple tabs simultaneously.
+- **Clean up Conversations** - Due to model token length limitations, clean up conversations as needed.
 <!-- Plugin description end -->
 
 ## Installation
 
-- Using the IDE built-in plugin system:
-  
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "plugin"</kbd> >
-  <kbd>Install</kbd>
-  
 - Manually:
 
-  Download the [latest release](https://github.com/vauns/plugin/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/HisunTeam/HiCodeAssistant/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
